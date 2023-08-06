@@ -59,7 +59,7 @@ include 'db.php';
                     </div>
                     <br>
                     <div class="form-floating">
-                        <input type="tel" class="form-control my-input" id="floatingInputGrid" placeholder="name@example.com" name="phone" maxlength="11" minlength="11" required>
+                        <input type="tel" pattern="(?=.*\d).{11,11}" class="form-control my-input" id="floatingInputGrid" placeholder="name@example.com" name="phone" maxlength="11" minlength="11" required>
                         <label for="floatingInputGrid" style="font-weight: 500;">Phone no.</label>
                     </div>
                     <br>
@@ -92,7 +92,7 @@ include 'db.php';
                     </div>
                     <br>
                     <div class="input-group flex-nowrap form-floating">
-                        <input type="password" class="form-control my-input" id="pass" onchange="Validate()"  placeholder="name@example.com" aria-describedby="addon-wrapping" name="pwd" pattern="(?=.*\W)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+                        <input type="password" class="form-control my-input" id="pass" onchange="Validate()" placeholder="name@example.com" aria-describedby="addon-wrapping" name="pwd" pattern="(?=.*\W)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
                         <label for="floatingInputGrid" style="font-weight: 500;">Password</label>
                         <span class="input-group-text my-input" id="addon-wrapping">&nbsp;<i class="far fa-eye" id="togglePassword" title="Show password"></i>&nbsp;</span>
                     </div>

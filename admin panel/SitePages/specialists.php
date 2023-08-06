@@ -1,7 +1,7 @@
 <?php
 include 'header.php';
 
-$q1 = "SELECT * FROM `users` WHERE `role`='Doctor'";
+$q1 = "SELECT * FROM `users` WHERE `role`='Specialist'";
 $row = mysqli_query($db,$q1);
 // $data = mysqli_fetch_assoc($run);
 
@@ -22,7 +22,7 @@ $row = mysqli_query($db,$q1);
                     <div class="dropdown-menu shadow-lg" aria-labelledby="dropdownMenuLink"><a class="dropdown-item" href="#">name</a><a class="dropdown-item" href="#">gender</a><a class="dropdown-item" href="#">specialization</a><a class="dropdown-item" href="#">email</a><a class="dropdown-item" href="#">phone no.</a><a class="dropdown-item" href="#">address</a></div>
                 </div>
             </div>
-            <div class="buttons-wrapper"><button class="btn btn-dark-red-f-gr"><i class="las la-plus-circle"></i>add a new specialist</button></div>
+            <a href="add-a-specialist.php"><div class="buttons-wrapper"><button class="btn btn-dark-red-f-gr"><i class="las la-plus-circle"></i>add a new specialist</button></div></a>
         </div>
         <div class="section specialists-table-view">
             <table class="table table-hover table-responsive-lg">
@@ -51,36 +51,6 @@ $row = mysqli_query($db,$q1);
                         <td><a href=""><i class="las la-ellipsis-h"></i></a></td>
                     </tr>
                     <?php } ?>
-                    <tr>
-                        <td><img class="rounded-circle mr-1" src="../SiteAssets/images/doctor (1).svg" loading="lazy" /><span class="ml-2">john doe</span></td>
-                        <td class="text-muted">male</td>
-                        <td>radiology</td>
-                        <td class="text-lowercase text-muted"><a href="">abc@def.com</a></td>
-                        <td>(254)455-0391</td>
-                        <td class="text-muted"><a href="">new york, US</a></td>
-                        <td><button class="btn btn-sm btn-dark-red-f">appointment</button></td>
-                        <td><a href=""><i class="las la-ellipsis-h"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td><img class="rounded-circle mr-1" src="../SiteAssets/images/doctor (1).svg" loading="lazy" /><span class="ml-2">john doe</span></td>
-                        <td class="text-muted">female</td>
-                        <td>heart surgeon</td>
-                        <td class="text-lowercase text-muted"><a href="">abc@def.com</a></td>
-                        <td>(254)455-0391</td>
-                        <td class="text-muted"><a href="">new york, US</a></td>
-                        <td><button class="btn btn-sm btn-dark-red-f">appointment</button></td>
-                        <td><a href=""><i class="las la-ellipsis-h"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td><img class="rounded-circle mr-1" src="../SiteAssets/images/doctor (1).svg" loading="lazy" /><span class="ml-2">john doe</span></td>
-                        <td class="text-muted">male</td>
-                        <td>neurologist</td>
-                        <td class="text-lowercase text-muted"><a href="">abc@def.com</a></td>
-                        <td>(254)455-0391</td>
-                        <td class="text-muted"><a href="">new york, US</a></td>
-                        <td><button class="btn btn-sm btn-dark-red-f">appointment</button></td>
-                        <td><a href=""><i class="las la-ellipsis-h"></i></a></td>
-                    </tr>
                 </tbody>
             </table>
         </div>
