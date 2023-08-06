@@ -1,5 +1,10 @@
 <?php
 include 'header.php';
+
+$q1 = "SELECT * FROM `users` WHERE `role`='Doctor'";
+$row = mysqli_query($db,$q1);
+// $data = mysqli_fetch_assoc($run);
+
 ?>
 <link rel="stylesheet" href="../SiteAssets/css/pages/specialists.css" />
 
@@ -34,16 +39,18 @@ include 'header.php';
                     </tr>
                 </thead>
                 <tbody>
+                <?php while($data=mysqli_fetch_assoc($row)){ ?>
                     <tr>
-                        <td><img class="rounded-circle mr-1" src="../SiteAssets/images/doctor (1).svg" loading="lazy" /><span class="ml-2">john doe</span></td>
-                        <td class="text-muted">male</td>
-                        <td>dentist</td>
-                        <td class="text-lowercase text-muted"><a href="">abc@def.com</a></td>
-                        <td>(254)455-0391</td>
-                        <td class="text-muted"><a href="">new york, US</a></td>
+                        <td><img class="rounded-circle mr-1" src="<?php echo $data['dp']; ?>" loading="lazy" /><span class="ml-2">john doe</span></td>
+                        <td class="text-muted"><?php echo $data['gender']; ?></td>
+                        <td><?php echo $data['role']; ?></td>
+                        <td class="text-lowercase text-muted"><a href=""><?php echo $data['email']; ?></a></td>
+                        <td><?php echo $data['phone']; ?></td>
+                        <td class="text-muted"><a href=""><?php echo $data['city']; ?></a></td>
                         <td><button class="btn btn-sm btn-dark-red-f">appointment</button></td>
                         <td><a href=""><i class="las la-ellipsis-h"></i></a></td>
                     </tr>
+                    <?php } ?>
                     <tr>
                         <td><img class="rounded-circle mr-1" src="../SiteAssets/images/doctor (1).svg" loading="lazy" /><span class="ml-2">john doe</span></td>
                         <td class="text-muted">male</td>
