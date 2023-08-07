@@ -7,6 +7,8 @@ $row = mysqli_query($db,$q1);
 
 ?>
 <link rel="stylesheet" href="../SiteAssets/css/pages/specialists.css" />
+<script src="../SiteAssets/js/spaecialists.js"></script>
+
 
 <div class="main-content">
     <div class="container-fluid">
@@ -33,22 +35,22 @@ $row = mysqli_query($db,$q1);
                         <th>specialization</th>
                         <th>email</th>
                         <th>phone no.</th>
-                        <th>address</th>
+                        <th>City</th>
                         <th></th>
-                        <th></th>
+                        <!-- <th></th> -->
                     </tr>
                 </thead>
                 <tbody>
                 <?php while($data=mysqli_fetch_assoc($row)){ ?>
                     <tr>
-                        <td><img class="rounded-circle mr-1" src="<?php echo $data['dp']; ?>" loading="lazy" /><span class="ml-2">john doe</span></td>
+                        <td><img class="rounded-circle mr-1" src="<?php echo $data['dp']; ?>" loading="lazy" /><span class="ml-2"><?php echo $data['first_name']; ?> <?php echo $data['last_name']; ?></span></td>
                         <td class="text-muted"><?php echo $data['gender']; ?></td>
                         <td><?php echo $data['role']; ?></td>
                         <td class="text-lowercase text-muted"><a href=""><?php echo $data['email']; ?></a></td>
                         <td><?php echo $data['phone']; ?></td>
                         <td class="text-muted"><a href=""><?php echo $data['city']; ?></a></td>
                         <td><button class="btn btn-sm btn-dark-red-f">appointment</button></td>
-                        <td><a href=""><i class="las la-ellipsis-h"></i></a></td>
+                        <!-- <td><a href=""><i class="las la-ellipsis-h"></i></a></td> -->
                     </tr>
                     <?php } ?>
                 </tbody>
