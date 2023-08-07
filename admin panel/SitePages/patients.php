@@ -198,7 +198,7 @@ $row2 = mysqli_query($db,$q1);
                         <th>gender</th>
                         <th>city</th>
                         <th>CNIC</th>
-                        <th>triage</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
