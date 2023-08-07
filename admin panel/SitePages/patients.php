@@ -3,6 +3,7 @@ include 'header.php';
 
 $q1 = "SELECT * FROM `users` WHERE `role`='User'";
 $row = mysqli_query($db,$q1);
+$row2 = mysqli_query($db,$q1);
 
 
 ?>
@@ -39,7 +40,7 @@ $row = mysqli_query($db,$q1);
                         </div>
                         <div class="card-body">
                             <div class="card-subsection-title">
-                                <h5><?php echo $data['first_name']." ".$data['last_name']; ?></h5>
+                                <h5><?php echo $data['first_name']. " " .$data['last_name']; ?></h5>
                                 <p class="text-muted">patient-id: <?php echo $data['id']; ?></p>
                             </div>
                             <div class="card-subsection-body"><label class="text-muted">age</label>
@@ -193,23 +194,45 @@ $row = mysqli_query($db,$q1);
                     <tr>
                         <th>patient ID</th>
                         <th>patient name</th>
-                        <th>age</th>
                         <th>date of birth</th>
-                        <th>diagnosis</th>
+                        <th>gender</th>
+                        <th>city</th>
+                        <th>CNIC</th>
                         <th>triage</th>
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
+                <?php while($data2=mysqli_fetch_assoc($row2)){ ?>
                     <tr>
-                        <td>2189178</td>
-                        <td><img class="rounded-circle" src="../SiteAssets/images/people.svg" loading="lazy" /><span class="ml-2">john doe</span></td>
-                        <td>29 yo</td>
-                        <td>21/03/1992</td>
-                        <td>cancer</td>
-                        <td><label class="label-orange">urgent</label></td>
-                        <td><a class="view-more btn btn-sm btn-dark-red-f" href="details.html">view profile</a></td>
+                        <td><?php echo $data2['id']; ?></td>
+                        <td><img class="rounded-circle" src="../SiteAssets/images/people.svg" loading="lazy" /><span class="ml-2"><?php echo $data2['first_name']." ".$data2['last_name']; ?></span></td>
+                        <td><?php echo $data2['dob']; ?></td>
+                        <td><?php echo $data2['gender']; ?></td>
+                        <td><?php echo $data2['city']; ?></td>
+                        <td><?php echo $data2['cnic']; ?></td>
+                        <!-- <td><a class="view-more btn btn-sm btn-dark-red-f" href="details.html">view profile</a></td> -->
+                        <td><label class="
+                        <?php 
+                        if($data2['covid_test_status'] == 'Covid Positive'){
+                            echo "label-pink";
+                        }elseif($data2['vaccine_status'] == 'Not Vaccinated'){
+                            echo "label-orange";
+                        }elseif($data2['vaccine_status'] == 'Pending'){
+                            echo "label-blue";
+                        }elseif($data2['vaccine_status'] == 'Vaccinated'){
+                            echo "label-green";
+                        }
+                        ?>
+                        "><?php
+                        if($data2['covid_test_status'] == 'Covid Positive'){
+                            echo $data2['covid_test_status'];
+                        }elseif($data2['vaccine_status'] == 'Not Vaccinated' || $data2['vaccine_status'] == 'Pending'){
+                            echo $data2['vaccine_status'];
+                        }elseif($data2['vaccine_status'] == 'Vaccinated'){
+                            echo $data2['vaccine_status'] ."(" .$data2['vaccine doses'] . ")";
+                        } ?></label></td>
                     </tr>
+                    <?php } ?>
                     <tr>
                         <td>2189178</td>
                         <td><img class="rounded-circle" src="../SiteAssets/images/people.svg" loading="lazy" /><span class="ml-2">john doe</span></td>
