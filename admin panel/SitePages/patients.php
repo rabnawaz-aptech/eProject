@@ -2,8 +2,8 @@
 include 'header.php';
 
 if (isset($_POST['submit'])) {
-    $c = $_POST['cnic'];
-    $q1 = "SELECT * FROM `users` WHERE `role`='User' AND `cnic`='$c'";
+    $s = $_POST['search'];
+    $q1 = "SELECT * FROM `users` WHERE `role`='User' AND `cnic`='$s'";
     $row1 = mysqli_query($db, $q1);
 } else {
 
@@ -23,34 +23,20 @@ if (isset($_POST['submit'])) {
             <h5 class="page-title"></h5>
         </div>
         <div class="section filters-section">
-            <div class="form-group col-sm-3">
-                <!-- <label>telephone number</label> -->
-                <form method="POST">
-                    <input class="form-control" name="cnic" placeholder="Search here..." required />
-                    <!-- <button class="btn btn-dark-red-f-gr mt-4" name="submit" onclick="refreshMyPage()">
-                    <i class="las la-save"></i>save changes
-                </button> -->
-            </div>
-            <div class="form-group col-sm-3">
-                <!-- <label>telephone number</label> -->
-                <!-- <input class="form-control" name="phone" placeholder="Search here..." required /> -->
-                <button class="btn btn-dark-red-f-gr" name="submit" onclick="refreshMyPage()">
-                    <i class="las la-search"></i>search
-                </button>
-                </form>
-            </div>
-
-            <!-- <div class="dropdowns-wrapper">
-                <div class="dropdown"><a class="btn btn-dark-red-o dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">filter</a>
-                    <div class="dropdown-menu shadow-lg" aria-labelledby="dropdownMenuLink"><a class="dropdown-item" href="#">age</a><a class="dropdown-item" href="#">diagnosis</a><a class="dropdown-item" href="#">triage</a></div>
+            <div class="row">
+                <!-- <div class="col-lg-6 col-md-6"><button class="btn btn-dark-red-o mr-2"><i class="las la-filter"></i>filter</button><button class="btn btn-dark-red-o"><i class="las la-sort"></i>sort</button></div> -->
+                <div class="col-lg-12 col-md-12">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+                            <form method="POST">
+                                <div class="input-group">
+                                    <input class="form-control" placeholder="Search here..." name="search" maxlength="13" minlength="13"><button class="btn btn-dark-red-f-gr" name="submit"><i class="las la-search"></i>search</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-                <div class="dropdown"><a class="btn btn-dark-red-o dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">sort by</a>
-                    <div class="dropdown-menu shadow-lg" aria-labelledby="dropdownMenuLink"><a class="dropdown-item" href="#">patient id</a><a class="dropdown-item" href="#">patient name</a><a class="dropdown-item" href="#">age</a><a class="dropdown-item" href="#">date of birth</a><a class="dropdown-item" href="#">diagnosis</a><a class="dropdown-item" href="#">triage</a></div>
-                </div>
-            </div> -->
-            <!-- <div class="switch-view-btns"> -->
-            <!-- <div class="btn-group btn-group-toggle" data-toggle="buttons"><label class="btn btn-darker-grey-o active"><input id="card-view-btn" type="radio" name="options" checked="" /><i class="las la-th-large"></i></label><label class="btn btn-darker-grey-o"><input id="table-view-btn" type="radio" name="options" /><i class="las la-list-ul"></i></label></div> -->
-            <!-- </div> -->
+            </div>
             <div class="buttons-wrapper ml-auto"><button class="btn btn-dark-red-f-gr"><i class="las la-plus-circle"></i>add a new patient</button></div>
         </div>
         <div class="section patients-table-view">

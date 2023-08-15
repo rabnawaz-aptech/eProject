@@ -1,9 +1,14 @@
 <?php
-
 include 'header.php';
 
-$q1 = "SELECT * FROM `hospitals`";
-$row = mysqli_query($db,$q1);
+if (isset($_POST['submit'])) {
+    $s = $_POST['search'];
+    $q1 = "SELECT * FROM `hospitals` WHERE `hospital_code`='$s'";
+    $row1 = mysqli_query($db, $q1);
+} else {
+    $q1 = "SELECT * FROM `hospitals`";
+    $row1 = mysqli_query($db, $q1);
+}
 // $data = mysqli_fetch_assoc($run);
 
 ?>
@@ -17,15 +22,24 @@ $row = mysqli_query($db,$q1);
             <h5 class="page-title"></h5>
         </div>
         <div class="section filters-section justify-content-between">
-            <div class="dropdowns-wrapper">
-                <div class="dropdown"><a class="btn btn-dark-red-o dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">filter</a>
-                    <div class="dropdown-menu shadow-lg" aria-labelledby="dropdownMenuLink"><a class="dropdown-item" href="#">name</a><a class="dropdown-item" href="#">gender</a><a class="dropdown-item" href="#">specialization</a><a class="dropdown-item" href="#">email</a><a class="dropdown-item" href="#">phone no.</a><a class="dropdown-item" href="#">address</a></div>
-                </div>
-                <div class="dropdown"><a class="btn btn-dark-red-o dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">sort by</a>
-                    <div class="dropdown-menu shadow-lg" aria-labelledby="dropdownMenuLink"><a class="dropdown-item" href="#">name</a><a class="dropdown-item" href="#">gender</a><a class="dropdown-item" href="#">specialization</a><a class="dropdown-item" href="#">email</a><a class="dropdown-item" href="#">phone no.</a><a class="dropdown-item" href="#">address</a></div>
+            <div class="row">
+                <!-- <div class="col-lg-6 col-md-6"><button class="btn btn-dark-red-o mr-2"><i class="las la-filter"></i>filter</button><button class="btn btn-dark-red-o"><i class="las la-sort"></i>sort</button></div> -->
+                <div class="col-lg-12 col-md-12">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+                            <form method="POST">
+                                <div class="input-group">
+                                    <input class="form-control" placeholder="Search here..." name="search"><button class="btn btn-dark-red-f-gr" name="submit"><i class="las la-search"></i>search</button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- <div class="col-md-6"><button class="btn btn-dark-red-f-gr"><i class="las la-plus-circle"></i>add a vaccine</button></div> -->
+                    </div>
                 </div>
             </div>
-            <a href="add-a-specialist.php"><div class="buttons-wrapper"><button class="btn btn-dark-red-f-gr"><i class="las la-plus-circle"></i>add a new specialist</button></div></a>
+            <a href="add-a-hospital.php">
+                <div class="buttons-wrapper"><button class="btn btn-dark-red-f-gr"><i class="las la-plus-circle"></i>add a new hospital</button></div>
+            </a>
         </div>
         <div class="section specialists-table-view">
             <table class="table table-hover table-responsive-lg">
@@ -35,24 +49,24 @@ $row = mysqli_query($db,$q1);
                         <th>email</th>
                         <th>City</th>
                         <th>phone no.</th>
+                        <th>hospital code</th>
                         <th>No. of specialists</th>
-                        <th>address</th>
                         <th></th>
                         <!-- <th></th> -->
                     </tr>
                 </thead>
                 <tbody>
-                <?php while($data=mysqli_fetch_assoc($row)){ ?>
-                    <tr>
-                        <td><span class="ml-2"><?php echo $data['name']; ?></span></td>
-                        <td class="text-lowercase text-muted"><a href=""><?php echo $data['email']; ?></a></td>
-                        <td class="text-muted"><?php echo $data['city']; ?></td>
-                        <td><?php echo $data['phone']; ?></td>
-                        <td><?php echo $data['no_of_specialists']; ?></td>
-                        <td class="text-muted"><a href=""><?php echo $data['address']; ?></a></td>
-                        <td><button class="btn btn-sm btn-dark-red-f">appointment</button></td>
-                        <!-- <td><a href=""><i class="las la-ellipsis-h"></i></a></td> -->
-                    </tr>
+                    <?php while ($data1 = mysqli_fetch_assoc($row1)) { ?>
+                        <tr>
+                            <td><span class="ml-2"><?php echo $data1['name']; ?></span></td>
+                            <td class="text-lowercase text-muted"><a href=""><?php echo $data1['email']; ?></a></td>
+                            <td class="text-muted"><?php echo $data1['city']; ?></td>
+                            <td><?php echo $data1['phone']; ?></td>
+                            <td class="text-muted"><a href=""><?php echo $data1['hospital_code']; ?></a></td>
+                            <td><?php echo $data1['no_of_specialists']; ?></td>
+                            <td><button class="btn btn-sm btn-dark-red-f">appointment</button></td>
+                            <!-- <td><a href=""><i class="las la-ellipsis-h"></i></a></td> -->
+                        </tr>
                     <?php } ?>
                 </tbody>
             </table>

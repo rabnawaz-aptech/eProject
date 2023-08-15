@@ -44,7 +44,7 @@ if (isset($_SESSION['admin'])) {
 
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg shadow-sm fixed-top"><a class="navbar-brand" href=""><img src="../SiteAssets/images/hospital-website.svg" /><span>i~Afya</span></a>
+      <nav class="navbar navbar-expand-lg shadow-sm fixed-top"><a class="navbar-brand" href=""><img src="../SiteAssets/images/hospital-website.svg" /><span>CTVS</span></a>
         <div class="navbar-collapse">
           <ul class="navbar-nav">
             <li class="nav-item"><a class="nav-link"><i class="las la-question-circle"></i></a></li>

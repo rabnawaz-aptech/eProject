@@ -19,6 +19,14 @@ $q4 = "SELECT * FROM `users` WHERE `role`='Hospital'";
 $row4 = mysqli_query($db,$q4);
 $count4 = mysqli_num_rows($row4);
 
+$q5 = "SELECT * FROM `specialists`";
+$row5 = mysqli_query($db,$q5);
+$count5 = mysqli_num_rows($row5);
+
+$q6 = "SELECT * FROM `vaccines`";
+$row6 = mysqli_query($db,$q6);
+$count6 = mysqli_num_rows($row6);
+
 ?>
 
 <div class="main-content">
@@ -56,8 +64,8 @@ $count4 = mysqli_num_rows($row4);
                   <h4><a href="specialists.php"><?php echo $count3; ?></a></h4>
                 </div>
                 <div class="col-md-4"><i class="las la-clinic-medical la-3x align-self-center"></i>
-                  <p>total clinics</p>
-                  <h4><a href=""><?php echo $count4; ?></a></h4>
+                  <p>total hospitals</p>
+                  <h4><a href="hospitals.php"><?php echo $count4; ?></a></h4>
                 </div>
               </div>
             </div>
@@ -130,20 +138,22 @@ $count4 = mysqli_num_rows($row4);
         <div class="card-deck">
           <div class="card">
             <div class="card-header">
-              <h5>top treatments</h5>
+              <h5>Vaccines</h5>
             </div>
             <div class="card-body">
               <ol type="1">
-                <li>consultation</li>
-                <li>scaling</li>
+                <?php while($data6 = mysqli_fetch_assoc($row6)){ ?>
+                <li><?php echo $data6['name']; ?></li>
+                <!-- <li>scaling</li>
                 <li>root canal</li>
                 <li>bleaching</li>
                 <li>transplants</li>
                 <li>cesarean</li>
-                <li>x-rays</li>
+                <li>x-rays</li> -->
+                <?php } ?>
               </ol>
             </div>
-            <div class="card-footer"><a class="view-more" href="">more<i class="las la-angle-right"></i></a></div>
+            <div class="card-footer"><a class="view-more" href="procurement.php">more<i class="las la-angle-right"></i></a></div>
           </div>
           <div class="card total-counts-summary">
             <div class="card-header">
@@ -178,40 +188,22 @@ $count4 = mysqli_num_rows($row4);
             <div class="card-body">
               <table class="table table-hover table-responsive-md table-borderless">
                 <tbody>
+                  <?php while($data2 = mysqli_fetch_assoc($row2)){ ?>
                   <tr>
-                    <td><img class="rounded-circle" src="../SiteAssets/images/man.svg" loading="lazy" /></td>
+                    <td><img class="rounded-circle" src="<?php echo $data2['dp']; ?>" loading="lazy" /></td>
                     <td>
-                      <p>john doe</p><small class="text-muted">dentist</small>
+                      <p><?php echo $data2['first_name']; ?></p><small class="text-muted">dentist</small>
                     </td>
                     <td>
-                      <p class="text-muted">male</p>
+                      <p class="text-muted"><?php echo $data2['gender']; ?></p>
                     </td>
-                    <td><button class="btn btn-sm"><i class="las la-ellipsis-h"></i></button></td>
+                    <td><?php echo $data2['city']; ?></td>
                   </tr>
-                  <tr>
-                    <td><img class="rounded-circle" src="../SiteAssets/images/man.svg" loading="lazy" /></td>
-                    <td>
-                      <p>john doe</p><small class="text-muted">dentist</small>
-                    </td>
-                    <td>
-                      <p class="text-muted">male</p>
-                    </td>
-                    <td><button class="btn btn-sm"><i class="las la-ellipsis-h"></i></button></td>
-                  </tr>
-                  <tr>
-                    <td><img class="rounded-circle" src="../SiteAssets/images/man.svg" loading="lazy" /></td>
-                    <td>
-                      <p>john doe</p><small class="text-muted">dentist</small>
-                    </td>
-                    <td>
-                      <p class="text-muted">male</p>
-                    </td>
-                    <td><button class="btn btn-sm"><i class="las la-ellipsis-h"></i></button></td>
-                  </tr>
+                  <?php } ?>
                 </tbody>
               </table>
             </div>
-            <div class="card-footer"><a class="view-more" href="">more<i class="las la-angle-right"></i></a></div>
+            <div class="card-footer"><a class="view-more" href="patients.php">more<i class="las la-angle-right"></i></a></div>
           </div>
         </div>
         <div class="card-deck">
@@ -222,7 +214,23 @@ $count4 = mysqli_num_rows($row4);
             <div class="card-body">
               <table class="table table-borderless table-hover table-responsive-md">
                 <tbody>
+                  <?php while($data5 = mysqli_fetch_assoc($row5)){ ?>
                   <tr>
+                    <td><img class="rounded-circle" src="<?php echo $data5['dp']; ?>" loading="lazy" /></td>
+                    <td>
+                      <p>Dr. <?php echo $data5['first_name'] . " " . $data5['last_name']; ?></p><small class="text-muted">dentist</small>
+                    </td>
+                    <td>
+                      <p class="text-muted"><?php echo $data5['gender'];?></p>
+                    </td>
+                    <td class="text-right">
+                      <p>+<?php echo $data5['phone'];?></p>
+                    </td>
+                    <!-- <td class="text-right"><button class="btn btn-dark-red-f btn-sm">appointment</button></td> -->
+                    <!-- <td><button class="btn btn-sm"><i class="las la-ellipsis-h"></i></button></td> -->
+                  </tr>
+                  <?php } ?>
+                  <!-- <tr>
                     <td><img class="rounded-circle" src="../SiteAssets/images/man.svg" loading="lazy" /></td>
                     <td>
                       <p>john doe</p><small class="text-muted">dentist</small>
@@ -263,25 +271,11 @@ $count4 = mysqli_num_rows($row4);
                     </td>
                     <td class="text-right"><button class="btn btn-dark-red-f btn-sm">appointment</button></td>
                     <td><button class="btn btn-sm"><i class="las la-ellipsis-h"></i></button></td>
-                  </tr>
-                  <tr>
-                    <td><img class="rounded-circle" src="../SiteAssets/images/man.svg" loading="lazy" /></td>
-                    <td>
-                      <p>john doe</p><small class="text-muted">dentist</small>
-                    </td>
-                    <td>
-                      <p class="text-muted">male</p>
-                    </td>
-                    <td class="text-right">
-                      <p>+271289178</p>
-                    </td>
-                    <td class="text-right"><button class="btn btn-dark-red-f btn-sm">appointment</button></td>
-                    <td><button class="btn btn-sm"><i class="las la-ellipsis-h"></i></button></td>
-                  </tr>
+                  </tr> -->
                 </tbody>
               </table>
             </div>
-            <div class="card-footer"><a class="view-more" href="">more<i class="las la-angle-right"></i></a></div>
+            <div class="card-footer"><a class="view-more" href="specialists.php">more<i class="las la-angle-right"></i></a></div>
           </div>
           <div class="card">
             <div class="card-header">
@@ -354,7 +348,7 @@ $count4 = mysqli_num_rows($row4);
         </div>
       </div>
     </div>
-    <div class="modal onboarding-modal" tabindex="=1">
+    <!-- <div class="modal onboarding-modal" tabindex="=1">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
@@ -394,7 +388,7 @@ $count4 = mysqli_num_rows($row4);
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <footer>
     <div class="page-footer text-center">
       <div class="fixed-bottom shadow-sm"><a href="https://covid19.who.int" target="_blank"><img src="../SiteAssets/images/covid-19.svg" /><span>view COVID-19 info</span></a></div>

@@ -29,7 +29,7 @@ $data1 = mysqli_fetch_assoc($row1);
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="mini-card text-center">
-                                            <div class="card-header"><img class="rounded-circle" src="<?php echo $data1['dp']; ?>" loading="lazy" /></div>
+                                            <div class="card-header"><img class="rounded-circle" src="<?php echo $data1['dp']; ?>"></div>
                                             <div class="card-body">
                                                 <h4><?php echo $data1['first_name'] . " " . $data1['last_name']; ?></h4><small class="text-muted"><?php echo $data1['email'];?></small>
                                                 <h5>age</h5>
@@ -58,13 +58,13 @@ $data1 = mysqli_fetch_assoc($row1);
                                                         <div class="form-group"><label>city</label><input class="form-control" readonly="readonly" value="<?php echo $data1['city']; ?>" /></div>
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <div class="form-group"><label>zip code</label><input class="form-control" readonly="readonly" value="21332" /></div>
+                                                        <div class="form-group"><label>blood group</label><input class="form-control" readonly="readonly" value="<?php echo $data1['blood group']; ?>" /></div>
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <div class="form-group"><label>member status</label><input class="form-control" readonly="readonly" value="active" /></div>
+                                                        <div class="form-group"><label>vaccine status</label><input class="form-control" readonly="readonly" value="<?php echo $data1['vaccine_status']; ?>" /></div>
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <div class="form-group"><label>registered date</label><input class="form-control" readonly="readonly" value="21/02/2018" /></div>
+                                                        <div class="form-group"><label>covid status</label><input class="form-control" readonly="readonly" value="<?php echo $data1['covid_test_status']; ?>" /></div>
                                                     </div>
                                                 </div>
                                             </div>
