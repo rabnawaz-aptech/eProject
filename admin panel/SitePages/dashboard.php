@@ -4,27 +4,27 @@
 include 'header.php';
 
 $q1 = "SELECT * FROM `users`";
-$row = mysqli_query($db,$q1);
+$row = mysqli_query($db, $q1);
 $count = mysqli_num_rows($row);
 
 $q2 = "SELECT * FROM `users` WHERE `role`='User'";
-$row2 = mysqli_query($db,$q2);
+$row2 = mysqli_query($db, $q2);
 $count2 = mysqli_num_rows($row2);
 
 $q3 = "SELECT * FROM `users` WHERE `role`='Specialist'";
-$row3 = mysqli_query($db,$q3);
+$row3 = mysqli_query($db, $q3);
 $count3 = mysqli_num_rows($row3);
 
 $q4 = "SELECT * FROM `users` WHERE `role`='Hospital'";
-$row4 = mysqli_query($db,$q4);
+$row4 = mysqli_query($db, $q4);
 $count4 = mysqli_num_rows($row4);
 
 $q5 = "SELECT * FROM `specialists`";
-$row5 = mysqli_query($db,$q5);
+$row5 = mysqli_query($db, $q5);
 $count5 = mysqli_num_rows($row5);
 
 $q6 = "SELECT * FROM `vaccines`";
-$row6 = mysqli_query($db,$q6);
+$row6 = mysqli_query($db, $q6);
 $count6 = mysqli_num_rows($row6);
 
 ?>
@@ -122,9 +122,9 @@ $count6 = mysqli_num_rows($row6);
             </div>
             <div class="card-body">
               <ol type="1">
-                <?php while($data6 = mysqli_fetch_assoc($row6)){ ?>
-                <li><?php echo $data6['name']; ?></li>
-                <!-- <li>scaling</li>
+                <?php while ($data6 = mysqli_fetch_assoc($row6)) { ?>
+                  <li><?php echo $data6['name']; ?></li>
+                  <!-- <li>scaling</li>
                 <li>root canal</li>
                 <li>bleaching</li>
                 <li>transplants</li>
@@ -168,17 +168,17 @@ $count6 = mysqli_num_rows($row6);
             <div class="card-body">
               <table class="table table-hover table-responsive-md table-borderless">
                 <tbody>
-                  <?php while($data2 = mysqli_fetch_assoc($row2)){ ?>
-                  <tr>
-                    <td><img class="rounded-circle" src="<?php echo $data2['dp']; ?>" loading="lazy" /></td>
-                    <td>
-                      <p><?php echo $data2['first_name']; ?></p><small class="text-muted">dentist</small>
-                    </td>
-                    <td>
-                      <p class="text-muted"><?php echo $data2['gender']; ?></p>
-                    </td>
-                    <td><?php echo $data2['city']; ?></td>
-                  </tr>
+                  <?php while ($data2 = mysqli_fetch_assoc($row2)) { ?>
+                    <tr>
+                      <td><img class="rounded-circle" src="<?php echo $data2['dp']; ?>" loading="lazy" /></td>
+                      <td>
+                        <p><?php echo $data2['first_name']; ?></p><small class="text-muted">dentist</small>
+                      </td>
+                      <td>
+                        <p class="text-muted"><?php echo $data2['gender']; ?></p>
+                      </td>
+                      <td><?php echo $data2['city']; ?></td>
+                    </tr>
                   <?php } ?>
                 </tbody>
               </table>
@@ -194,21 +194,21 @@ $count6 = mysqli_num_rows($row6);
             <div class="card-body">
               <table class="table table-borderless table-hover table-responsive-md">
                 <tbody>
-                  <?php while($data5 = mysqli_fetch_assoc($row5)){ ?>
-                  <tr>
-                    <td><img class="rounded-circle" src="<?php echo $data5['dp']; ?>" loading="lazy" /></td>
-                    <td>
-                      <p>Dr. <?php echo $data5['first_name'] . " " . $data5['last_name']; ?></p><small class="text-muted">dentist</small>
-                    </td>
-                    <td>
-                      <p class="text-muted"><?php echo $data5['gender'];?></p>
-                    </td>
-                    <td class="text-right">
-                      <p>+<?php echo $data5['phone'];?></p>
-                    </td>
-                    <!-- <td class="text-right"><button class="btn btn-dark-red-f btn-sm">appointment</button></td> -->
-                    <!-- <td><button class="btn btn-sm"><i class="las la-ellipsis-h"></i></button></td> -->
-                  </tr>
+                  <?php while ($data5 = mysqli_fetch_assoc($row5)) { ?>
+                    <tr>
+                      <td><img class="rounded-circle" src="<?php echo $data5['dp']; ?>" loading="lazy" /></td>
+                      <td>
+                        <p>Dr. <?php echo $data5['first_name'] . " " . $data5['last_name']; ?></p><small class="text-muted">dentist</small>
+                      </td>
+                      <td>
+                        <p class="text-muted"><?php echo $data5['gender']; ?></p>
+                      </td>
+                      <td class="text-right">
+                        <p>+<?php echo $data5['phone']; ?></p>
+                      </td>
+                      <!-- <td class="text-right"><button class="btn btn-dark-red-f btn-sm">appointment</button></td> -->
+                      <!-- <td><button class="btn btn-sm"><i class="las la-ellipsis-h"></i></button></td> -->
+                    </tr>
                   <?php } ?>
                   <!-- <tr>
                     <td><img class="rounded-circle" src="../SiteAssets/images/man.svg" loading="lazy" /></td>
@@ -369,24 +369,24 @@ $count6 = mysqli_num_rows($row6);
       </div>
     </div>
   </div> -->
-  <footer>
-    <div class="page-footer text-center">
-      <div class="fixed-bottom shadow-sm"><a href="https://covid19.who.int" target="_blank"><img src="../SiteAssets/images/covid-19.svg" /><span>view COVID-19 info</span></a></div>
-    </div>
-  </footer>
-</div>
-</main>
-</body>
+    <footer>
+      <div class="page-footer text-center">
+        <div class="fixed-bottom shadow-sm"><a href="https://covid19.who.int" target="_blank"><img src="../SiteAssets/images/covid-19.svg" /><span>view COVID-19 info</span></a></div>
+      </div>
+    </footer>
+  </div>
+  </main>
+  </body>
 
-</html>
+  </html>
 
-<?php
+  <?php
 
-// }
-// else{
-// echo 'i am here';
-// echo $_SESSION['admin'];
-// echo "<script>window.open('../../Covid Vaccination/login.php','_self')</script>";
-// }
+  // }
+  // else{
+  // echo 'i am here';
+  // echo $_SESSION['admin'];
+  // echo "<script>window.open('../../Covid Vaccination/login.php','_self')</script>";
+  // }
 
-?>
+  ?>

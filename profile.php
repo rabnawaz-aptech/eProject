@@ -123,25 +123,25 @@ https://templatemo.com/tm-566-medic-care
                     <p><label class="
                         <?php
                         if ($data['covid_test_status'] == 'Covid Positive') {
-                            echo "label-pink";
+                          echo "label-pink";
                         } elseif ($data['vaccine_status'] == 'Not Vaccinated') {
-                            echo "label-orange";
+                          echo "label-orange";
                         } elseif ($data['vaccine_status'] == 'Pending') {
-                            echo "label-blue";
+                          echo "label-blue";
                         } elseif ($data['vaccine_status'] == 'Vaccinated') {
-                            echo "label-green";
+                          echo "label-green";
                         }
                         ?>
                         "><?php
-                            if ($data['covid_test_status'] == 'Covid Positive') {
-                                echo $data['covid_test_status'];
-                            } elseif ($data['vaccine_status'] == 'Not Vaccinated' || $data['vaccine_status'] == 'Pending') {
-                                echo $data['vaccine_status'];
-                            } elseif ($data['vaccine_status'] == 'Vaccinated') {
-                                echo $data['vaccine_status'] . "(" . $data['vaccine doses'] . ")";
-                            } ?></label></p>
+                          if ($data['covid_test_status'] == 'Covid Positive') {
+                            echo $data['covid_test_status'];
+                          } elseif ($data['vaccine_status'] == 'Not Vaccinated' || $data['vaccine_status'] == 'Pending') {
+                            echo $data['vaccine_status'];
+                          } elseif ($data['vaccine_status'] == 'Vaccinated') {
+                            echo $data['vaccine_status'] . "(" . $data['vaccine doses'] . ")";
+                          } ?></label></p>
                   </div>
-                  
+
                   <div class="col-lg-6 col-6 mb-3 mt-3">
                     <label class="form-label">Covid Status:</label>
                     <p><?php echo $_SESSION['covid_test_status']; ?></p>
@@ -163,10 +163,10 @@ https://templatemo.com/tm-566-medic-care
       <!--  <h2>Report Information</h2> -->
       <div class="container mt-3">
         <h2>Report Information</h2>
-        <?php 
+        <?php
         $cnic = $_SESSION['cnic'];
         $test = "SELECT * FROM `covid_test_report` WHERE `cnic`='$cnic'";
-        $trow = mysqli_query($db,$test);
+        $trow = mysqli_query($db, $test);
         ?>
         <table class="table table-bordered">
           <thead>
@@ -214,8 +214,7 @@ https://templatemo.com/tm-566-medic-care
 
   <?php
   include 'footer.php';
-  
-}else{
+} else {
   echo "<script>window.open('login.php','_self');</script>";
 }
 
