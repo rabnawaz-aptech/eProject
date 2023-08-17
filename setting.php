@@ -1,5 +1,5 @@
 <?php
-    include 'header.php';
+include 'header.php';
 if (isset($_SESSION['profile'])) {
     // $id = $_GET['id'];
     $_SESSION['Email'] = $_COOKIE['profile'];
@@ -60,19 +60,19 @@ if (isset($_SESSION['profile'])) {
                                     <div class="col-lg-6 col-12 mb-3 mt-3">
                                         <label class="form-label">City Of Residence:</label>
                                         <select class="form-select" name="city" required>
-                                             <option <?php if ($data1['city'] == 'Karachi') {
-                                                                        echo 'selected';
-                                                                    } ?>>Karachi</option>
-                                             <option <?php if ($data1['city'] == 'Lahore') {
-                                                                        echo 'selected';
-                                                                    } ?>>Lahore</option>
-                                             <option <?php if ($data1['city'] == 'Islamabad') {
-                                                                        echo 'selected';
-                                                                    } ?>>Islamabad</option>
-                                             <option <?php if ($data1['city'] == 'Peshawar') {
-                                                                        echo 'selected';
-                                                                    } ?>>Peshawar</option>                                          
-                                            </select>
+                                            <option value="Karachi" <?php if ($data1['city'] == 'Karachi') {
+                                                        echo 'selected';
+                                                    } ?>>Karachi</option>
+                                            <option <?php if ($data1['city'] == 'Lahore') {
+                                                        echo 'selected';
+                                                    } ?>>Lahore</option>
+                                            <option <?php if ($data1['city'] == 'Islamabad') {
+                                                        echo 'selected';
+                                                    } ?>>Islamabad</option>
+                                            <option <?php if ($data1['city'] == 'Peshawar') {
+                                                        echo 'selected';
+                                                    } ?>>Peshawar</option>
+                                        </select>
                                         <!-- <input type="text" name="city" class="form-control" placeholder="City Of Residence" required> -->
                                     </div>
 

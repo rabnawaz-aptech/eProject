@@ -25,10 +25,10 @@
                 <div class="col-lg-2 col-md-6 col-12 my-4 my-lg-0">
                     <h5 class="mb-lg-4 mb-3">Our Clinic</h5>
 
-                    <p><a href="mailto:ayeshaarif@aptechiic.com">ayeshaarif@aptechiic.com</a>
+                    <p><a href="mailto:contact@aptechiic.com">contact@aptechiic.com</a>
                     <p>
 
-                    <p>123 Digital Art Street, San Diego, CA 92123</p>
+                    <p>Saima Trade Tower، B-115, 1st Floor, I.I Chundrigar Rd, Karachi, Karachi City, Sindh</p>
                 </div>
 
                 <div class="col-lg-3 col-md-6 col-12 ms-auto">

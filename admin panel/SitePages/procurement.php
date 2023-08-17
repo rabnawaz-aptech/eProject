@@ -33,7 +33,7 @@ if (isset($_POST['submit'])) {
                                 </div>
                             </form>
                         </div>
-                        <div class="col-md-6"><button class="btn btn-dark-red-f-gr"><i class="las la-plus-circle"></i>add a vaccine</button></div>
+                        <div class="col-md-6"><a href="add-a-vaccine.php"><button class="btn btn-dark-red-f-gr"><i class="las la-plus-circle"></i>add a vaccine</button></a></div>
                     </div>
                 </div>
             </div>

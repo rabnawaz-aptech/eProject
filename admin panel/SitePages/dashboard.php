@@ -75,12 +75,12 @@ $count6 = mysqli_num_rows($row6);
     </div>
     <div class="section functionality-section">
       <div class="section-content">
-        <div class="card-deck"><a class="card text-center" href="">
+        <div class="card-deck"><a class="card text-center" href="add-a-hospital.php">
             <div class="card-title">
               <div class="icon-wrapper"><i class="las la-clinic-medical"></i></div>
             </div>
             <div class="card-body">
-              <p>add a clinic</p>
+              <p>add a hospital</p>
             </div>
           </a><a class="card text-center" href="add-a-specialist.php">
             <div class="card-title">
@@ -115,26 +115,6 @@ $count6 = mysqli_num_rows($row6);
     </div>
     <div class="section card-summaries">
       <div class="section-content">
-        <div class="card-deck">
-          <div class="card">
-            <div class="card-header">
-              <h5>recent activities</h5>
-            </div>
-            <div class="card-body"><canvas id="recent-activity-chart"></canvas></div>
-          </div>
-          <div class="card">
-            <div class="card-header">
-              <h5>total bookings</h5>
-            </div>
-            <div class="card-body"><canvas id="bookings-chart"></canvas></div>
-          </div>
-          <div class="card">
-            <div class="card-header">
-              <h5>diseases summary</h5>
-            </div>
-            <div class="card-body"><canvas id="diseases-chart"></canvas></div>
-          </div>
-        </div>
         <div class="card-deck">
           <div class="card">
             <div class="card-header">

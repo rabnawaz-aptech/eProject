@@ -118,6 +118,35 @@ https://templatemo.com/tm-566-medic-care
                     <p><?php echo $_SESSION['bio']; ?></p>
                   </div>
 
+                  <div class="col-lg-6 col-6 mb-3 mt-3">
+                    <label class="form-label">Vaccination Status:</label>
+                    <p><label class="
+                        <?php
+                        if ($data['covid_test_status'] == 'Covid Positive') {
+                            echo "label-pink";
+                        } elseif ($data['vaccine_status'] == 'Not Vaccinated') {
+                            echo "label-orange";
+                        } elseif ($data['vaccine_status'] == 'Pending') {
+                            echo "label-blue";
+                        } elseif ($data['vaccine_status'] == 'Vaccinated') {
+                            echo "label-green";
+                        }
+                        ?>
+                        "><?php
+                            if ($data['covid_test_status'] == 'Covid Positive') {
+                                echo $data['covid_test_status'];
+                            } elseif ($data['vaccine_status'] == 'Not Vaccinated' || $data['vaccine_status'] == 'Pending') {
+                                echo $data['vaccine_status'];
+                            } elseif ($data['vaccine_status'] == 'Vaccinated') {
+                                echo $data['vaccine_status'] . "(" . $data['vaccine doses'] . ")";
+                            } ?></label></p>
+                  </div>
+                  
+                  <div class="col-lg-6 col-6 mb-3 mt-3">
+                    <label class="form-label">Covid Status:</label>
+                    <p><?php echo $_SESSION['covid_test_status']; ?></p>
+                  </div>
+
                   <div class="col-lg-3 col-sm-3 mb-3 mt-3">
                     <a href="setting.php"><button class="form-control profile-button" id="submit-button">Setting</button></a>
                   </div>
@@ -134,32 +163,35 @@ https://templatemo.com/tm-566-medic-care
       <!--  <h2>Report Information</h2> -->
       <div class="container mt-3">
         <h2>Report Information</h2>
+        <?php 
+        $cnic = $_SESSION['cnic'];
+        $test = "SELECT * FROM `covid_test_report` WHERE `cnic`='$cnic'";
+        $trow = mysqli_query($db,$test);
+        ?>
         <table class="table table-bordered">
           <thead>
             <tr>
+              <th>Test Id</th>
+              <th>Test Name</th>
               <th>Patient Name</th>
-              <th>Date of Report</th>
               <th>Hospital Name</th>
               <th>Doctor Name</th>
+              <th>Date of Covid Test</th>
               <th>Covid Test Status</th>
-              <th>Vaccination status</th>
-              <th>Vaccination Doses</th>
-              <th>Blood Group</th>
-              <th></th>
+              <th>Detailed Report</th>
             </tr>
           </thead>
           <tbody>
-            <?php while ($data = mysqli_fetch_assoc($row)) {
+            <?php while ($tdata = mysqli_fetch_assoc($trow)) {
             ?>
               <tr>
-                <td><?php echo $_SESSION['first_name']; ?></td>
-                <td><?php echo $_SESSION['dob']; ?></td>
-                <td><?php echo $_SESSION['hospital_name']; ?></td>
-                <td><?php echo $_SESSION['doctor_name']; ?></td>
-                <td><?php echo $_SESSION['covid_test_status']; ?></td>
-                <td><?php echo $_SESSION['vaccine_status']; ?></td>
-                <td><?php echo $_SESSION['vaccine doses']; ?></td>
-                <td><?php echo $_SESSION['blood group']; ?></td>
+                <td><?php echo $tdata['id']; ?></td>
+                <td><?php echo $tdata['test_name']; ?></td>
+                <td><?php echo $tdata['patient_name']; ?></td>
+                <td><?php echo $tdata['hospital_name']; ?></td>
+                <td><?php echo $tdata['doctor_name']; ?></td>
+                <td><?php echo $tdata['covid_test_date']; ?></td>
+                <td><?php echo $tdata['covid_test_status']; ?></td>
                 <td><button class="btn btn-primary form-control" name="go">View Report</button></td>
               </tr>
 
@@ -176,12 +208,14 @@ https://templatemo.com/tm-566-medic-care
 
 
     </main>
+    <br><br>
 
 
 
   <?php
   include 'footer.php';
-} else {
+  
+}else{
   echo "<script>window.open('login.php','_self');</script>";
 }
 
