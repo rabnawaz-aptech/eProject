@@ -40,7 +40,7 @@ include 'header.php';
                                     <!-- col-md-8 col-md-12 col-lg-8 -->
                                     <div class="form-group col-sm-6">
                                         <label>telephone number</label>
-                                        <input class="form-control" pattern="(?=.*\d).{11,11}" name="phone" placeholder="Phone no." type="tel" maxlength="11" minlength="11"  required />
+                                        <input class="form-control" pattern="(?=.*\d).{11,11}" name="phone" placeholder="Phone no." type="tel" maxlength="11" minlength="11" required />
                                     </div>
                                     <div class="form-group col-sm-6">
                                         <label>City</label>
@@ -76,50 +76,51 @@ include 'header.php';
                                     $cp = $_POST['c-pwd'];
                                     $phone = $_POST['phone'];
 
-                                    if($p==$cp){
+                                    if ($p == $cp) {
 
-                
+
                                         // $role= "user";
-                
+
                                         $q1 = "SELECT * FROM `hospitals` WHERE `email` LIKE '$e';";
-                                        $run = mysqli_query($db , $q1);
+                                        $run = mysqli_query($db, $q1);
                                         $count = mysqli_num_rows($run);
-                
-                                        if($count== 1){
+
+                                        if ($count == 1) {
                                             echo "
                                             <div class='alert alert-danger'>
                                         <strong>Already registered!</strong> go to login!
                                         </div>
                                             ";
-                                        }else{
+                                        } else {
 
 
-                                    $q2 = "INSERT INTO `hospitals`(`name`,`email`,`city`,`hospital_code`,`pwd`,`phone`,`address`) VALUES('$name','$e','$city','$hc','$p','$phone','$address') ";
-                                    // $q3 = "INSERT INTO `specialists`(`first_name`,`last_name`,`email`,`role`,`gender`,`dob`,`dp`,`city`,`cnic`,`pwd`,`phone`,`hsptl_code`,`hsptl`,`spltid`,`splty`) VALUES('$fname','$lname','$e','$role','$g','$dob','$dp','$city','$cnic','$p','$phone','$hsptl_code','$hsptl','$spltid','$splty') ";
-                                    // print_r($q3);
-                                    // exit();
-                                    mysqli_query($db,$q2);
-                                    // mysqli_query($db,$q3);
-                                    echo "<script>window.open('hospitals.php','_self');</script>";
+                                            $q2 = "INSERT INTO `hospitals`(`name`,`email`,`city`,`hospital_code`,`pwd`,`phone`,`address`) VALUES('$name','$e','$city','$hc','$p','$phone','$address') ";
+                                            // $q3 = "INSERT INTO `specialists`(`first_name`,`last_name`,`email`,`role`,`gender`,`dob`,`dp`,`city`,`cnic`,`pwd`,`phone`,`hsptl_code`,`hsptl`,`spltid`,`splty`) VALUES('$fname','$lname','$e','$role','$g','$dob','$dp','$city','$cnic','$p','$phone','$hsptl_code','$hsptl','$spltid','$splty') ";
+                                            // print_r($q3);
+                                            // exit();
+                                            mysqli_query($db, $q2);
+                                            // mysqli_query($db,$q3);
+                                            echo "<script>window.open('hospitals.php','_self');</script>";
+                                        }
+                                    } else {
+                                        echo "<div class='alert alert-danger'><strong>Error!</strong> Password doesn't match.</div>";
+                                    }
                                 }
-                            }else{echo "<div class='alert alert-danger'><strong>Error!</strong> Password doesn't match.</div>";
-                            }
-                        }
                                 ?>
                                 <script type="text/javascript">
-    function Validate() {
-        var password = document.getElementById("pass").value;
-        var confirmPassword = document.getElementById("c-pass").value;
-        if (password != confirmPassword) {
-            document.getElementById("demo").innerHTML ="<div class='alert alert-danger'><strong>Error!</strong> Password doesn't match.</div>";
-            // write("");
-            return true;
-        }else{
-            document.getElementById("demo").innerHTML ="";
-            return false;
-        }
-    }
-</script>
+                                    function Validate() {
+                                        var password = document.getElementById("pass").value;
+                                        var confirmPassword = document.getElementById("c-pass").value;
+                                        if (password != confirmPassword) {
+                                            document.getElementById("demo").innerHTML = "<div class='alert alert-danger'><strong>Error!</strong> Password doesn't match.</div>";
+                                            // write("");
+                                            return true;
+                                        } else {
+                                            document.getElementById("demo").innerHTML = "";
+                                            return false;
+                                        }
+                                    }
+                                </script>
                                 <span id="demo"></span>
                                 <button class="btn btn-dark-red-f-gr mt-4" name="save" onclick="refreshMyPage()">
                                     <i class="las la-save"></i>save to list
