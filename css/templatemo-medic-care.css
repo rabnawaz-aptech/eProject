@@ -559,7 +559,7 @@ color: white;
   }
 
   .timeline-nodes:nth-child(even) {
-/*    flex-direction: row;*/
+   /* flex-direction: row; */
   }
 
   .timeline::before {
@@ -830,7 +830,7 @@ color: white;
   color: var(--primary-color);
 }
   .sm_screen{
-    display: none !important;
+    display: none;
   }
 
 /*---------------------------------------
@@ -841,7 +841,7 @@ color: white;
     height: 740px;
   }
    .sm_screen{
-    display: none !important;
+    display: none;
   }
 }
 
@@ -908,7 +908,7 @@ color: white;
     height: 320px;
   }
   .sm_screen{
-    display: none !important;
+    display: none;
   }
 }
 

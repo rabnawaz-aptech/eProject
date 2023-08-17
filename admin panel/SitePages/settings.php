@@ -200,25 +200,17 @@ include 'header.php';
             </div>
             <div class="card container">
                 <div class="card-header">
-                    <h5>newsletters and notifications</h5>
-                    <p>Control newsletter subscriptions and email notifications</p>
+                    <h5>Logout</h5>
+                    <p>If you Logout you'll have to login again with email and password.</p>
                 </div>
                 <div class="card-body">
                     <div class="sub-section col-sm-8 col-md-12 col-lg-6">
                         <div class="sub-section-body">
-                            <div class="user-notifications-form">
-                                <div class="custom-control custom-switch">
-                                    <input class="custom-control-input" id="customSwitch1" type="checkbox" />
-                                    <label class="custom-control-label" for="customSwitch1">Subscribe to our monthly newsletter</label>
-                                </div>
-                                <div class="custom-control custom-switch">
-                                    <input class="custom-control-input" id="customSwitch2" type="checkbox" checked="checked" />
-                                    <label class="custom-control-label" for="customSwitch2">Enable custom notifications via email</label>
-                                </div>
+                            <a href="../../logout.php">
                                 <button class="btn btn-dark-red-f-gr mt-4">
-                                    <i class="las la-save"></i>save changes
+                                    Logout
                                 </button>
-                            </div>
+                            </a>
                         </div>
                     </div>
                 </div>

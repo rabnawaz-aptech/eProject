@@ -86,12 +86,12 @@ if(isset($_POST['login'])){
 
         // echo $_SESSION['profile'];
         // echo "i am here";
-        echo "<script>window.open('../admin panel/SitePages/dashboard.php','_self');</script>";
+        echo "<script>window.open('Admin Panel/SitePages/dashboard.php','_self');</script>";
     
     }elseif($count == 1){
 
-        $profile = setcookie("email", $e , time() + (86400 * 30) ,  "/");
-        $_SESSION['profile'] = $profile;
+        $profile = setcookie("profile", $e , time() + (86400 * 30) ,  "/");
+        $_SESSION['profile'] = $_COOKIE['profile'];
     
         // echo $_SESSION['profile'];
         // echo "i am here";

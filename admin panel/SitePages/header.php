@@ -79,7 +79,7 @@ if (isset($_SESSION['admin'])) {
             <li class="nav-item">
               <div class="nav-link"><span class="vertical-divider"></span></div>
             </li>
-            <li class="nav-item"><a class="nav-link profile-dropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="rounded-circle" src="../SiteAssets/images/person.jpg" /><span class="d"><?php echo $_SESSION['first_name']; ?></span></a>
+            <li class="nav-item"><a class="nav-link profile-dropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="rounded-circle" src="<?php echo $_SESSION['dp']; ?>" /><span class="d"><?php echo $_SESSION['first_name']; ?></span></a>
               <div class="dropdown">
                 <div class="dropdown-menu shadow-lg profile-dropdown-menu" aria-labelledby="profile-dropdown"><a class="dropdown-item" href="#"><i class="las la-user mr-2"></i>profile</a><a class="dropdown-item" href="#"><i class="las la-cog mr-2"></i>settings</a></div>
               </div>
@@ -92,24 +92,13 @@ if (isset($_SESSION['admin'])) {
       <div class="side-nav">
         <ul class="list-group list-group-flush"><a class="list-group-item" href="dashboard.php" data-toggle="tooltip" data-placement="bottom" title="Dashboard"><i class="las la-shapes la-lw"></i><span>dashboard</span></a><a class="list-group-item" href="patients.php" data-toggle="tooltip" data-placement="bottom" title="Patients"><i class="las la-user-injured la-lw"></i><span>patients</span></a><a class="list-group-item" href="hospitals.php" data-toggle="tooltip" data-placement="bottom" title="Hospitals"><i class="las la-clinic-medical"></i><span>hospitals</span></a><a class="list-group-item" href="specialists.php" data-toggle="tooltip" data-placement="bottom" title="Specialists"><i class="la-lw las la-user-md"></i><span>specialists</span></a><a class="list-group-item" href="procurement.php" data-toggle="tooltip" data-placement="bottom" title="Procurement"><i class="las la-shopping-cart la-lw"></i><span>procurement</span></a><a class="list-group-item" href="notifications.php" data-toggle="tooltip" data-placement="bottom" title="Notifications"><i class="las la-sms la-lw"></i><span>notifications</span></a><a class="list-group-item" href="settings.php" data-toggle="tooltip" data-placement="bottom" title="Settings"><i class="las la-cogs la-lw"></i><span>settings</span></a>
           <hr class="divider" />
-          <div class="aob-items">
-            <div class="card">
-              <div class="card-header"><img src="../SiteAssets/images/covid-19.svg" /></div>
-              <div class="card-body">
-                <p><u><i class="las la-globe"></i>world</u></p>
-                <p>infected -<u>43,341,451</u></p>
-                <p>deaths -<u>1,157,509</u></p>
-              </div>
-              <div class="card-footer"><a class="btn btn-dark-red-f-gr btn-sm" href="https://covid19.who.int" target="_blank">view COVID-19 info</a></div>
-            </div>
-          </div>
         </ul>
       </div>
 
     <?php
 
   } else {
-    echo "<script>window.open('../../Covid Vaccination/login.php','_self')</script>";
+    echo "<script>window.open('../../login.php','_self')</script>";
   }
 
     ?>
