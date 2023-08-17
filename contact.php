@@ -12,7 +12,7 @@ include 'header.php';
                                 
                                 <h2 class="text-center mb-lg-3 mb-2">Contact Us</h2>
                             
-                                <form role="form" action="#booking" method="post">
+                                <form role="form" action="#booking" method="POST">
                                     <div class="row">
                                         <div class="col-lg-6 col-12">
                                             <input type="text" name="name" id="name" class="form-control" placeholder="Full name" required>
@@ -23,23 +23,35 @@ include 'header.php';
                                         </div>
 
                                         <div class="col-lg-6 col-12">
-                                            <input type="telephone" name="phone" id="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" class="form-control" placeholder="Phone: 123-456-7890">
+                                            <input type="telephone" name="phone" id="phone" class="form-control" placeholder="Phone: 123-456-7890" required>
                                         </div>
 
                                         <div class="col-lg-6 col-12">
-                                            <input type="date" name="date" id="date" value="" class="form-control">
+                                            <input type="date" name="date" id="date" value="" class="form-control" required>
                                             
                                         </div>
 
                                         <div class="col-12">
-                                            <textarea class="form-control" rows="5" id="message" name="message" placeholder="Additional Message"></textarea>
+                                            <textarea class="form-control" rows="5" id="message" name="message" placeholder="Additional Message" required></textarea>
                                         </div>
 
                                         <div class="col-lg-3 col-md-4 col-6 mx-auto">
-                                            <button type="submit" class=" form-control" id="submit-button">Submit</button>
+                                            <button type="submit" class=" form-control" id="submit-button" name="submit">Submit</button>
                                         </div>
                                             </div>
-                                </form>                              
+                                </form>              
+                                <?php
+                                if(isset($_POST['submit'])){
+                                    $n = $_POST['name'];
+                                    $e = $_POST['email'];
+                                    $p = $_POST['phone'];
+                                    $d = $_POST['date'];
+                                    $m = $_POST['message'];
+
+                                    $q1 = "INSERT INTO `contact`(`fullname`,`email`,`phone`,`date`,`message`) VALUES('$n','$e','$p','$d','$m')";
+                                    mysqli_query($db,$q1);
+                                }
+                                ?>                
                             </div>
                         </div>
                                          <div class="col-lg-6 col-12">
@@ -52,5 +64,6 @@ include 'header.php';
                 </div>
             
                </main>
-                  </body>
-                    </html>
+<?php
+include 'footer.php';
+?>

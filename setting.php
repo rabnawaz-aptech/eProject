@@ -1,8 +1,10 @@
 <?php
-include 'header.php';
+    include 'header.php';
 if (isset($_SESSION['profile'])) {
-    $id = $_GET['id'];
-    $q1 = "SELECT * FROM `users` WHERE `id`='$id'";
+    // $id = $_GET['id'];
+    $_SESSION['Email'] = $_COOKIE['profile'];
+    $e = $_SESSION['Email'];
+    $q1 = "SELECT * FROM `users` WHERE `email`='$e'";
     $run1 = mysqli_query($db, $q1);
     $data1 = mysqli_fetch_assoc($run1);
 
@@ -57,7 +59,21 @@ if (isset($_SESSION['profile'])) {
 
                                     <div class="col-lg-6 col-12 mb-3 mt-3">
                                         <label class="form-label">City Of Residence:</label>
-                                        <input type="text" name="city" value="<?php echo $data1['city']; ?>" class="form-control" placeholder="City Of Residence" required>
+                                        <select class="form-select" name="city" required>
+                                             <option <?php if ($data1['city'] == 'Karachi') {
+                                                                        echo 'selected';
+                                                                    } ?>>Karachi</option>
+                                             <option <?php if ($data1['city'] == 'Lahore') {
+                                                                        echo 'selected';
+                                                                    } ?>>Lahore</option>
+                                             <option <?php if ($data1['city'] == 'Islamabad') {
+                                                                        echo 'selected';
+                                                                    } ?>>Islamabad</option>
+                                             <option <?php if ($data1['city'] == 'Peshawar') {
+                                                                        echo 'selected';
+                                                                    } ?>>Peshawar</option>                                          
+                                            </select>
+                                        <!-- <input type="text" name="city" class="form-control" placeholder="City Of Residence" required> -->
                                     </div>
 
                                     <div class="col-lg-6 col-12 mb-3 mt-3">
@@ -132,13 +148,9 @@ if (isset($_SESSION['profile'])) {
         echo "<script>window.open('profile.php','_self')</script>";
     }
 } else {
+    include 'footer.php';
 
-    echo "<div class='alert alert-warning'><b>Error!</b>Wrong Password.</div>";
+    echo "<script>window.open('login.php','_self');</script>";
 }
 
 ?>
-
-
-</body>
-
-</html

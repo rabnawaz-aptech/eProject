@@ -4,12 +4,27 @@ include 'db.php';
 
 if (isset($_SESSION['profile'])) {
 
-
     $_SESSION['Email'] = $_COOKIE['profile'];
     $p = $_SESSION['Email'];
 
+    $q = "SELECT * FROM `users` WHERE `email` = '$p' OR `phone` = '$p '";
+    $run  = mysqli_query($db , $q);
+    $data = mysqli_fetch_assoc($run);
 
-    echo "<style>.login1{display: none !important;} .login2{display: block !important;}</style>";
+    $_SESSION['FName'] = $data['first_name'];
+    $_SESSION['LName'] = $data['last_name'];
+    $_SESSION['cnic'] = $data['cnic'];
+    $_SESSION['email'] = $data['email'];
+    $_SESSION['dp'] = $data['dp'];
+    $_SESSION['city'] = $data['city'];
+    $_SESSION['gender'] = $data['gender'];
+    $_SESSION['phone'] = $data['phone'];
+    $_SESSION['dob'] = $data['dob'];
+
+    echo "<style>.main-menu-l{display: none !important;}.main-menu-p{display: block !important;}</style>";
+    // echo "<script>alert('Hello! ".$_SESSION['profile']."');</script>";
+}else{
+    echo"<style>.main-menu-l{display: block !important;}.main-menu-p{display: none !important;}</style>";
 }
 ?>
 <!doctype html>
@@ -101,17 +116,21 @@ https://templatemo.com/tm-566-medic-care
                                 <a class="nav-link" href="contact.php">Contact</a>
                             </li>
                             <li class="nav-item sm_screen">
-                                <a class="nav-link " href="login.php">Login</a>
+                                <a class="nav-link main-menu-l" href="login.php">Login</a>
                             </li>
                             <li class="nav-item sm_screen">
-                                <a class="nav-link " href="signup.php">Signin</a>
+                                <a class="nav-link main-menu-l" href="signup.php">Sign up</a>
+                            </li>
+                            <li class="nav-item sm_screen">
+                                <a class="nav-link main-menu-p" href="profile.php"><?php echo $_SESSION['FName']; ?></a>
                             </li>
 
                         </ul>
                     </div>
 
                 </div>
-                <a href="login.php"><button type="button" class="btn btn-primary login_btn lg_screen">login</button></a>&nbsp;
-                <a href="signup.php"><button type="button" class="btn btn-primary sign_btn lg_screen">Signup</button></a>
+                <a href="login.php" class="main-menu-l"><button type="button" class="btn btn-primary login_btn lg_screen">login</button></a>&nbsp;
+                <a href="signup.php" class="main-menu-l"><button type="button" class="btn btn-primary sign_btn lg_screen">Signup</button></a>
+                <a href="profile.php" class="main-menu-p"><button type="button" class="btn btn-primary sign_btn lg_screen"><?php echo $_SESSION['FName']; ?></button></a>
         </nav>
         </div>

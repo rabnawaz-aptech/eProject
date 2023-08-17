@@ -119,7 +119,7 @@ https://templatemo.com/tm-566-medic-care
                   </div>
 
                   <div class="col-lg-3 col-sm-3 mb-3 mt-3">
-                    <a href="setting.php?id=<?php echo $_SESSION['id']; ?>"><button class="form-control profile-button" id="submit-button">Setting</button></a>
+                    <a href="setting.php"><button class="form-control profile-button" id="submit-button">Setting</button></a>
                   </div>
 
                   <div class="col-lg-3 col-sm-3 mb-3 mt-3">
@@ -179,10 +179,10 @@ https://templatemo.com/tm-566-medic-care
 
 
 
-<?php
-
+  <?php
+  include 'footer.php';
 } else {
   echo "<script>window.open('login.php','_self');</script>";
 }
 
-?>
+  ?>

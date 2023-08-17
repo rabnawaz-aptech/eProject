@@ -40,7 +40,7 @@ include 'header.php';
                 </div>
             </section>
                </main>
-                   </body>
-                     </html>
 
-
+<?php
+include 'footer.php';
+?>
