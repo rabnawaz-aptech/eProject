@@ -19,7 +19,8 @@ $q4 = "SELECT * FROM `users` WHERE `role`='Hospital'";
 $row4 = mysqli_query($db, $q4);
 $count4 = mysqli_num_rows($row4);
 
-$q5 = "SELECT * FROM `specialists`";
+$hc = $_SESSION['hospital_code'];
+$q5 = "SELECT * FROM `specialists` WHERE `hsptl_code`='$hc'";
 $row5 = mysqli_query($db, $q5);
 $count5 = mysqli_num_rows($row5);
 
@@ -73,46 +74,7 @@ $count6 = mysqli_num_rows($row6);
         </div>
       </div>
     </div>
-    <div class="section functionality-section">
-      <div class="section-content">
-        <div class="card-deck"><a class="card text-center" href="add-a-hospital.php">
-            <div class="card-title">
-              <div class="icon-wrapper"><i class="las la-clinic-medical"></i></div>
-            </div>
-            <div class="card-body">
-              <p>add a hospital</p>
-            </div>
-          </a><a class="card text-center" href="add-a-specialist.php">
-            <div class="card-title">
-              <div class="icon-wrapper"><i class="las la-user-md"></i></div>
-            </div>
-            <div class="card-body">
-              <p>add a specialist</p>
-            </div>
-          </a><a class="card text-center" href="">
-            <div class="card-title">
-              <div class="icon-wrapper"><i class="las la-user-plus"></i></div>
-            </div>
-            <div class="card-body">
-              <p>add a user</p>
-            </div>
-          </a><a class="card text-center" href="">
-            <div class="card-title">
-              <div class="icon-wrapper"><i class="las la-user-lock"></i></div>
-            </div>
-            <div class="card-body">
-              <p>add an admin</p>
-            </div>
-          </a><a class="card text-center" href="">
-            <div class="card-title">
-              <div class="icon-wrapper"><i class="las la-plus-circle"></i></div>
-            </div>
-            <div class="card-body">
-              <p>add a staff</p>
-            </div>
-          </a></div>
-      </div>
-    </div>
+    
     <div class="section card-summaries">
       <div class="section-content">
         <div class="card-deck">
