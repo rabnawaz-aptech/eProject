@@ -7,7 +7,7 @@ if (isset($_SESSION['profile'])) {
     $_SESSION['Email'] = $_COOKIE['profile'];
     $p = $_SESSION['Email'];
 
-    $q = "SELECT * FROM `users` WHERE `email` = '$p' OR `phone` = '$p '";
+    $q = "SELECT * FROM `users` WHERE `email` = '$p'";
     $run  = mysqli_query($db , $q);
     $data = mysqli_fetch_assoc($run);
 
@@ -37,7 +37,7 @@ if (isset($_SESSION['profile'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Medic Care Bootstrap 5 CSS Template</title>
+    <title>Covid Test and Vaccination System</title>
 
     <!-- CSS FILES -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -76,9 +76,9 @@ https://templatemo.com/tm-566-medic-care
 
         <nav class="navbar navbar-expand-lg bg-light fixed-top shadow-lg">
             <div class="container">
-                <a class="navbar-brand mx-auto d-lg-none" href="index.html">
-                    Medic Care
-                    <strong class="d-block">Health Specialist</strong>
+                <a class="navbar-brand mx-auto d-lg-none" href="index.php">
+                    CTVS
+                    <strong class="d-block">Health Ministry</strong>
                 </a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -99,9 +99,9 @@ https://templatemo.com/tm-566-medic-care
                                 <a class="nav-link" href="#timeline">Timeline</a>
                             </li>
 
-                            <a class="navbar-brand d-none d-lg-block" href="index.html">
-                                Medic Care
-                                <strong class="d-block">Health Specialist</strong>
+                            <a class="navbar-brand d-none d-lg-block" href="index.php">
+                                CTVS
+                                <strong class="d-block">Health Ministry</strong>
                             </a>
 
                             <li class="nav-item">

@@ -4,7 +4,7 @@ include 'header.php';
 
 if (isset($_SESSION['profile'])) {
   $e = $_SESSION['profile'];
-  $q1 = "SELECT * FROM `users` WHERE `email`='$e' ";
+  $q1 = "SELECT * FROM `users` WHERE `email`='$e' OR `phone` = '$p'";
   $run = mysqli_query($db, $q1);
   $data = mysqli_fetch_assoc($run);
   //  print_r($q1);
@@ -163,6 +163,9 @@ https://templatemo.com/tm-566-medic-care
       <!--  <h2>Report Information</h2> -->
       <div class="container mt-3">
         <h2>Report Information</h2>
+        <a href="covid-test-appointment.php"><button class="btn btn-primary" name="go">Book an Appointment</button></a>
+        <br>
+        <hr>
         <?php
         $cnic = $_SESSION['cnic'];
         $test = "SELECT * FROM `covid_test_report` WHERE `cnic`='$cnic'";
@@ -174,10 +177,11 @@ https://templatemo.com/tm-566-medic-care
               <th>Test Id</th>
               <th>Test Name</th>
               <th>Patient Name</th>
+              <th>CNIC</th>
               <th>Hospital Name</th>
               <th>Doctor Name</th>
-              <th>Date of Covid Test</th>
-              <th>Covid Test Status</th>
+              <th>Test Date</th>
+              <th>Test Status</th>
               <th>Detailed Report</th>
             </tr>
           </thead>
@@ -188,6 +192,7 @@ https://templatemo.com/tm-566-medic-care
                 <td><?php echo $tdata['id']; ?></td>
                 <td><?php echo $tdata['test_name']; ?></td>
                 <td><?php echo $tdata['patient_name']; ?></td>
+                <td><?php echo $tdata['cnic']; ?></td>
                 <td><?php echo $tdata['hospital_name']; ?></td>
                 <td><?php echo $tdata['doctor_name']; ?></td>
                 <td><?php echo $tdata['covid_test_date']; ?></td>

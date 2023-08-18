@@ -4,7 +4,7 @@ if (isset($_SESSION['profile'])) {
     // $id = $_GET['id'];
     $_SESSION['Email'] = $_COOKIE['profile'];
     $e = $_SESSION['Email'];
-    $q1 = "SELECT * FROM `users` WHERE `email`='$e'";
+    $q1 = "SELECT * FROM `users` WHERE `email`='$e' OR `phone` = '$p'";
     $run1 = mysqli_query($db, $q1);
     $data1 = mysqli_fetch_assoc($run1);
 

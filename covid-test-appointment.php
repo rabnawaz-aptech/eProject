@@ -52,11 +52,11 @@ if (isset($_SESSION['profile'])) {
 
 
     $cnic = $_SESSION['cnic'];
-    $cv = "SELECT * FROM `vaccination_bookings` WHERE `cnic`='$cnic'";
-    $rowv = mysqli_query($db,$cv);
-    $countv = mysqli_num_rows($rowv);
+    $ct = "SELECT * FROM `covid_test_report` WHERE `cnic`='$cnic' AND `covid_test_status`='Pending'";
+    $rowt = mysqli_query($db, $ct);
+    $countt = mysqli_num_rows($rowt);
 
-    if($countv == 2){
+    if ($countt == 1) {
         echo "<style>.hb{display: none;}</style>";
     }
 
@@ -82,16 +82,6 @@ if (isset($_SESSION['profile'])) {
                                 <form method="POST">
                                     <label class="form-label">First Name:</label>
                                     <input type="text" name="fname" id="name" class="form-control" value="<?php echo $_SESSION['first_name']; ?>" placeholder="Full name" required disabled>
-                            </div>
-
-                            <div class="col-lg-6 col-12 mb-3 mt-3">
-                                <label class="form-label">Last Name:</label>
-                                <input type="text" name="lname" id="name" class="form-control" value="<?php echo $_SESSION['last_name']; ?>" placeholder="Full name" required disabled>
-                            </div>
-
-                            <div class="col-lg-6 col-12 mb-3 mt-3">
-                                <label class="form-label">E-mail:</label>
-                                <input type="email" name="email" id="email" value="<?php echo $_SESSION['email']; ?>" class="form-control" placeholder="Email address" required disabled>
                             </div>
 
                             <div class="col-lg-6 col-12 mb-3 mt-3">
@@ -147,20 +137,21 @@ if (isset($_SESSION['profile'])) {
                                 <hr>
                                 <div class="row">
                                     <div class="col-lg-6 col-12 mb-3 mt-3">
-                                        <label class="form-label">Covid Vaccination:</label>
-                                        <select class="form-select" name="covidvaccine" required>
-                                            <!-- <option disabled>Select an option</option> -->
-                                            <?php while ($data3 = mysqli_fetch_assoc($row3)) { ?>
-                                                <option value="<?php echo $data3['name']; ?>"><?php echo $data3['name']; ?></option>
-                                                <!-- <option>Sinovac</option> -->
-                                                <!-- <option>Pfizer</option> -->
-                                                <!-- <option>Moderna</option>   -->
-                                            <?php } ?>
+                                        <label class="form-label">Covid Test:</label>
+                                        <select class="form-select" name="covidtest" required>
+                                            <!-- <option>Select an option</option> -->
+                                            <option value="Antigen">Antigen</option>
+                                            <option value="Antibody Test (Serology Test or BloodTest)">Antibody Test (Serology Test or BloodTest)</option>
+                                            <option value="PCR">PCR</option>
                                         </select>
                                     </div>
 
+                                    <!-- <option></option>
+                                                <option></option>
+                                                <option></option> -->
+
                                     <div class="col-lg-6 col-12 mb-3 mt-3">
-                                        <label class="form-label">Vaccination Hospital:</label>
+                                        <label class="form-label">Test Hospital:</label>
                                         <select class="form-select" name="hospital" required>
                                             <?php while ($data2 = mysqli_fetch_assoc($row2)) { ?>
                                                 <option value="<?php echo $data2['name']; ?>"><?php echo $data2['name']; ?></option>
@@ -208,13 +199,22 @@ if (isset($_SESSION['profile'])) {
                                     <?php
                                     if (isset($_POST['submit'])) {
 
-                                        $cv = $_POST['covidvaccine'];
+                                        $ct = $_POST['covidtest'];
                                         $hospital = $_POST['hospital'];
                                         $doa = $_POST['doa'];
                                         $toa = $_POST['toa'];
 
-                                        $book = "INSERT INTO `vaccination_bookings`(`first_name`, `last_name`, `email`, `phone`, `cnic`, `dob`, `gender`, `city`, `vaccine`, `vaccination_hospital`, `date_of_appointment`, `time_of_appointment`) VALUES('$fn','$ln','$email','$p','$cnic','$dob','$gender','$city','$cv','$hospital','$doa','$toa')";
-                                        
+                                        // $fn = $data1['first_name'];
+                                        // $ln = $data1['last_name'];
+                                        // $cnic = $data1['cnic'];
+                                        // $email = $data1['email'];
+                                        // $p = $data1['phone'];
+                                        // $dob = $data1['dob'];
+                                        // $gender = $data1['gender'];
+                                        // $city = $data1['city'];
+
+                                        $book = "INSERT INTO `covid_test_report`(`test_name`, `patient_name`, `cnic`, `dob`, `gender`, `phone`, `city`, `hospital_name`, `covid_test_date`, `time_of_appointment`) VALUES ('$ct','$fn','$cnic','$dob','$gender','$p','$city','$hospital','$doa','$toa')";
+
                                         // print_r($book);
                                         // exit();
                                         mysqli_query($db, $book);
@@ -237,48 +237,52 @@ if (isset($_SESSION['profile'])) {
     </main>
 
     <div class="container mt-3">
-        <h2>Covid Vaccination</h2>
+        <h2>Covid Test Reports</h2>
         <?php
         $cnic = $_SESSION['cnic'];
-        $test = "SELECT * FROM `vaccination_bookings` WHERE `cnic`='$cnic'";
+        $test = "SELECT * FROM `covid_test_report` WHERE `cnic`='$cnic'";
         $trow = mysqli_query($db, $test);
         ?>
         <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th>Booking Id</th>
-              <th>Full Name</th>
-              <th>CNIC</th>
-              <th>Hospital Name</th>
-              <th>Doctor Name</th>
-              <th>Vaccine</th>
-              <th>Date of Vaccination</th>
-              <th>Vaccine Dose</th>
-              <th>Vaccine Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php while ($tdata = mysqli_fetch_assoc($trow)) {
-            ?>
-              <tr>
-                <td><?php echo $tdata['id']; ?></td>
-                <td><?php echo $tdata['first_name'] ." ". $tdata['last_name']; ?></td>
-                <td><?php echo $tdata['cnic']; ?></td>
-                <td><?php echo $tdata['vaccination_hospital']; ?></td>
-                <td><?php echo $tdata['vaccination_specialist']; ?></td>
-                <td><?php echo $tdata['vaccine']; ?></td>
-                <td><?php echo $tdata['date_of_appointment']; ?></td>
-                <td><?php echo $tdata['vaccine_dose']; ?></td>
-                <td><?php echo $tdata['vaccine_status']; ?></td>
-                <!-- <td><button class="btn btn-primary form-control" name="go">View Report</button></td> -->
-              </tr>
+            <thead>
+                <tr>
+                    <th>Booking Id</th>
+                    <th>Test Name</th>
+                    <th>Patient Name</th>
+                    <th>CNIC</th>
+                    <th>Hospital Name</th>
+                    <th>Doctor Name</th>
+                    <th>Test Date</th>
+                    <th>Test Status</th>
+                    <th>Detailed Report</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php while ($tdata = mysqli_fetch_assoc($trow)) {
+                ?>
+                    <tr>
+                        <td><?php echo $tdata['id']; ?></td>
+                        <td><?php echo $tdata['test_name']; ?></td>
+                        <td><?php echo $tdata['patient_name']; ?></td>
+                        <td><?php echo $tdata['cnic']; ?></td>
+                        <td><?php echo $tdata['hospital_name']; ?></td>
+                        <td><?php echo $tdata['doctor_name']; ?></td>
+                        <td><?php echo $tdata['covid_test_date']; ?></td>
+                        <td><?php echo $tdata['covid_test_status']; ?></td>
+                        <td><a href="index.php"><?php echo $tdata['detailed_report']; ?></a></td>
+                        <!-- <td></td> -->
+                        <!-- <td><button class="btn btn-primary form-control" name="go">View Report</button></td> -->
+                    </tr>
 
-            <?php } ?>
+                <?php } ?>
 
-          </tbody>
+            </tbody>
         </table>
 
-      </div>
+        <a href="profile.php"><button class="btn btn-primary">Go Back</button></a>
+    </div>
+    <br>
+
 
 
 

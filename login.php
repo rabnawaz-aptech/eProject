@@ -65,7 +65,8 @@ if(isset($_POST['login'])){
 	$e= $_POST['email'];
 	$p= $_POST['pwd'];
 
-	$q= "SELECT * FROM `users` WHERE (`email` = '$e' OR `phone` = '$e') AND `pwd` = '$p'";
+	$q1= "SELECT * FROM `users` WHERE (`email` = '$e' OR `phone` = '$e') AND `pwd` = '$p'";
+	$q2= "SELECT * FROM `hospitals` WHERE (`email` = '$e' OR `phone` = '$e') AND `pwd` = '$p'";
 	$adminq= "SELECT * FROM `users` WHERE (`email` = '$e' OR `phone` = '$e') AND `pwd` = '$p' AND `role` = 'Admin'";
 
 
@@ -73,9 +74,11 @@ if(isset($_POST['login'])){
 	// exit();
 
 
-	$run = mysqli_query($db,$q);
+	$run1 = mysqli_query($db,$q1);
+	$run2 = mysqli_query($db,$q2);
 	$adminrun = mysqli_query($db,$adminq);
-	$count = mysqli_num_rows($run);
+	$count1 = mysqli_num_rows($run1);
+	$count2 = mysqli_num_rows($run2);
 	$admincount = mysqli_num_rows($adminrun);
 
 	if($admincount == 1){
@@ -88,9 +91,19 @@ if(isset($_POST['login'])){
         // echo "i am here";
         echo "<script>window.open('Admin Panel/SitePages/dashboard.php','_self');</script>";
     
-    }elseif($count == 1){
+    }elseif($count2 == 1){
 
-        $profile = setcookie("profile", $e , time() + (86400 * 30) ,  "/");
+        setcookie("hospital", $e , time() + (86400 * 30) ,  "/");
+        $_SESSION['hospital'] = $_COOKIE['hospital'];
+    
+        // echo $_SESSION['profile'];
+        // echo "i am here";
+        echo "<script>window.open('Admin Panel/SitePages/hospital.php','_self');</script>";
+
+
+	}elseif($count1 == 1){
+
+        setcookie("profile", $e , time() + (86400 * 30) ,  "/");
         $_SESSION['profile'] = $_COOKIE['profile'];
     
         // echo $_SESSION['profile'];

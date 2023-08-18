@@ -1,6 +1,6 @@
 <?php
 
-include 'header.php';
+include 'h-header.php';
 
 ?>
 <link rel="stylesheet" href="../SiteAssets/css/pages/settings.css" />
@@ -17,55 +17,6 @@ include 'header.php';
                     <p>This section contains your basic profile information like name, email etc</p>
                 </div>
                 <div class="card-body">
-                    <div class="sub-section col-lg-10 col-md-12">
-                        <div class="sub-section-title">
-                            <h6>profile picture</h6>
-                        </div>
-                        <div class="sub-section-body">
-                            <div class="row">
-                                <div class="col-lg-2 col-md-4">
-                                    <img class="rounded-circle" src="../SiteAssets/images/doctor.svg" />
-                                </div>
-                                <div class="col-lg-6 col-md-8">
-                                    <div class="d-flex mb-2">
-                                        <form method="POST" enctype="multipart/form-data">
-                                            <!-- <label class="form-label">Pic:</label> -->
-                                            <input type="file" name="pic" required>
-                                    </div>
-                                    <div class="d-flex mb-2">
-                                        <button class="btn btn-sm btn-dark-red-f" name="changepic">
-                                            <i class="las la-upload"></i>upload new photo
-                                        </button>
-                                        </form>
-                                        <?php
-                                        if (isset($_POST['changepic'])) {
-
-
-                                            $id = $_SESSION['id'];
-                                            $f = $_FILES['pic']['name'];
-                                            $src = $_FILES['pic']['tmp_name'];
-                                            $des = "../SiteAssets/images/" . $f;
-                                            move_uploaded_file($src, $des);
-
-                                            $q4 = "UPDATE `users` SET `dp`='$des' WHERE `id`='$id'";
-                                            // exit();
-                                            // print_r($q3);
-
-                                            mysqli_query($db, $q3);
-
-                                            echo "<script>window.location.href = 'settings.php';</script>";
-                                        }
-                                        ?>
-                                        <button class="btn btn-sm btn-darker-grey-o ml-2">
-                                            <i class="las la-trash"></i>remove
-                                        </button>
-                                    </div>
-                                    <p>You can upload .jpg, .gif or .png image files</p>
-                                    <p>max file size<b> 3mb</b></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="sub-section col-md-12 col-lg-8">
                         <div class="sub-section-title">
                             <h6>profile details</h6>
@@ -182,7 +133,7 @@ include 'header.php';
                 
                                         // $role= "user";
                 
-                                        $q1 = "SELECT * FROM `users` WHERE `email` LIKE '$e';";
+                                        $q1 = "SELECT * FROM `specialists` WHERE `email` LIKE '$e';";
                                         $run = mysqli_query($db , $q1);
                                         $count = mysqli_num_rows($run);
                 
@@ -201,7 +152,7 @@ include 'header.php';
                                     // exit();
                                     mysqli_query($db,$q2);
                                     mysqli_query($db,$q3);
-                                    echo "<script>window.location.href = 'specialists.php';</script>";
+                                    echo "<script>window.location.href = 'h-specialists.php';</script>";
                                 }
                             }else{echo "<div class='alert alert-danger'><strong>Error!</strong> Password doesn't match.</div>";
                             }
