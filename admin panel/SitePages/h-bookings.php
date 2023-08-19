@@ -1,13 +1,15 @@
 <?php
-include 'header.php';
+include 'h-header.php';
 
 if (isset($_POST['submit'])) {
     $s = $_POST['search'];
-    $q1 = "SELECT * FROM `users` WHERE `role`='User' AND `cnic`='$s'";
+    $hc = $_SESSION['hospital_code'];
+    $q1 = "SELECT * FROM `covid_test_report` WHERE `hospital_code`='$hc' AND `covid_test_status`='Pending' AND `cnic`='$s'";
     $row1 = mysqli_query($db, $q1);
 } else {
 
-    $q1 = "SELECT * FROM `users` WHERE `role`='User'";
+    $hc = $_SESSION['hospital_code'];
+    $q1 = "SELECT * FROM `covid_test_report` WHERE `hospital_code`='$hc' AND `covid_test_status`='Pending'";
     $row1 = mysqli_query($db, $q1);
 }
 
@@ -37,13 +39,14 @@ if (isset($_POST['submit'])) {
                     </div>
                 </div>
             </div>
-            <!-- <div class="buttons-wrapper ml-auto"><button class="btn btn-dark-red-f-gr"><i class="las la-plus-circle"></i>add a new patient</button></div> -->
+            <div class="buttons-wrapper ml-auto"><button class="btn btn-dark-red-f-gr"><i class="las la-plus-circle"></i>add a new patient</button></div>
         </div>
         <div class="section patients-table-view">
             <table class="table table-hover table-responsive-lg">
                 <thead>
                     <tr>
                         <th>patient ID</th>
+                        <th>Test name</th>
                         <th>patient name</th>
                         <th>date of birth</th>
                         <th>gender</th>
@@ -56,32 +59,14 @@ if (isset($_POST['submit'])) {
                     <?php while ($data1 = mysqli_fetch_assoc($row1)) { ?>
                         <tr>
                             <td><?php echo $data1['id']; ?></td>
-                            <td><img class="rounded-circle" src="../SiteAssets/images/people.svg" loading="lazy" /><span class="ml-2"><a href="details.php?id=<?php echo $data1['id']; ?>" style="color: #000;"><?php echo $data1['first_name'] . " " . $data1['last_name']; ?></a></span></td>
+                            <td><?php echo $data1['test_name']; ?></td>
+                            <td><img class="rounded-circle" src="../SiteAssets/images/people.svg" loading="lazy" /><span class="ml-2"><a href="details.php?id=<?php echo $data1['id']; ?>" style="color: #000;"><?php echo $data1['patient_name']; ?></a></span></td>
                             <td><?php echo $data1['dob']; ?></td>
                             <td><?php echo $data1['gender']; ?></td>
                             <td><?php echo $data1['city']; ?></td>
                             <td><?php echo $data1['cnic']; ?></td>
                             <!-- <td><a class="view-more btn btn-sm btn-dark-red-f" href="details.html">view profile</a></td> -->
-                            <td><label class="
-                        <?php
-                        if ($data1['covid_test_status'] == 'Covid Positive') {
-                            echo "label-pink";
-                        } elseif ($data1['vaccine_status'] == 'Not Vaccinated') {
-                            echo "label-orange";
-                        } elseif ($data1['vaccine_status'] == 'Pending') {
-                            echo "label-blue";
-                        } elseif ($data1['vaccine_status'] == 'Vaccinated') {
-                            echo "label-green";
-                        }
-                        ?>
-                        "><?php
-                            if ($data1['covid_test_status'] == 'Covid Positive') {
-                                echo $data1['covid_test_status'];
-                            } elseif ($data1['vaccine_status'] == 'Not Vaccinated' || $data1['vaccine_status'] == 'Pending') {
-                                echo $data1['vaccine_status'];
-                            } elseif ($data1['vaccine_status'] == 'Vaccinated') {
-                                echo $data1['vaccine_status'] . "(" . $data1['vaccine doses'] . ")";
-                            } ?></label></td>
+                            <td><?php echo $data1['covid_test_status']; ?></td>
                         </tr>
                     <?php } ?>
                 </tbody>

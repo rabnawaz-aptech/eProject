@@ -11,11 +11,11 @@ $q2 = "SELECT * FROM `users` WHERE `role`='User'";
 $row2 = mysqli_query($db, $q2);
 $count2 = mysqli_num_rows($row2);
 
-$q3 = "SELECT * FROM `users` WHERE `role`='Specialist'";
+$q3 = "SELECT * FROM `specialists`";
 $row3 = mysqli_query($db, $q3);
 $count3 = mysqli_num_rows($row3);
 
-$q4 = "SELECT * FROM `users` WHERE `role`='Hospital'";
+$q4 = "SELECT * FROM `hospitals`";
 $row4 = mysqli_query($db, $q4);
 $count4 = mysqli_num_rows($row4);
 
@@ -26,6 +26,10 @@ $count5 = mysqli_num_rows($row5);
 $q6 = "SELECT * FROM `vaccines`";
 $row6 = mysqli_query($db, $q6);
 $count6 = mysqli_num_rows($row6);
+
+$q7 = "SELECT * FROM `covid_test_report` WHERE `covid_test_status`='Pending'";
+$row7 = mysqli_query($db, $q7);
+$count7 = mysqli_num_rows($row7);
 
 ?>
 
@@ -75,42 +79,6 @@ $count6 = mysqli_num_rows($row6);
     </div>
     <div class="section functionality-section">
       <div class="section-content">
-        <div class="card-deck"><a class="card text-center" href="add-a-hospital.php">
-            <div class="card-title">
-              <div class="icon-wrapper"><i class="las la-clinic-medical"></i></div>
-            </div>
-            <div class="card-body">
-              <p>add a hospital</p>
-            </div>
-          </a><a class="card text-center" href="add-a-specialist.php">
-            <div class="card-title">
-              <div class="icon-wrapper"><i class="las la-user-md"></i></div>
-            </div>
-            <div class="card-body">
-              <p>add a specialist</p>
-            </div>
-          </a><a class="card text-center" href="">
-            <div class="card-title">
-              <div class="icon-wrapper"><i class="las la-user-plus"></i></div>
-            </div>
-            <div class="card-body">
-              <p>add a user</p>
-            </div>
-          </a><a class="card text-center" href="">
-            <div class="card-title">
-              <div class="icon-wrapper"><i class="las la-user-lock"></i></div>
-            </div>
-            <div class="card-body">
-              <p>add an admin</p>
-            </div>
-          </a><a class="card text-center" href="">
-            <div class="card-title">
-              <div class="icon-wrapper"><i class="las la-plus-circle"></i></div>
-            </div>
-            <div class="card-body">
-              <p>add a staff</p>
-            </div>
-          </a></div>
       </div>
     </div>
     <div class="section card-summaries">
@@ -155,7 +123,7 @@ $count6 = mysqli_num_rows($row6);
                 </div>
                 <div class="col-md-6"><i class="las la-hospital la-2x mb-1"></i>
                   <h4 class="mb-1"><?php echo $count4; ?></h4>
-                  <p>total clinics</p>
+                  <p>total hospitals</p>
                 </div>
               </div>
             </div>
@@ -264,62 +232,25 @@ $count6 = mysqli_num_rows($row6);
             <div class="card-body">
               <table class="table table-borderless table-hover table-responsive-md">
                 <tbody>
-                  <tr>
-                    <td><img class="rounded-circle" src="../SiteAssets/images/man.svg" loading="lazy" /></td>
-                    <td>
-                      <p>john doe</p><small class="text-muted">dentist</small>
-                    </td>
-                    <td>
-                      <p class="text-muted">male</p>
-                    </td>
-                    <td class="text-right">
-                      <p>24y</p>
-                    </td>
-                    <td class="text-right"><button class="btn"><i class="las la-check-circle"></i></button><button class="btn"><i class="las la-times-circle"></i></button></td>
-                    <td><button class="btn btn-sm"><i class="las la-ellipsis-h"></i></button></td>
-                  </tr>
-                  <tr>
-                    <td><img class="rounded-circle" src="../SiteAssets/images/man.svg" loading="lazy" /></td>
-                    <td>
-                      <p>john doe</p><small class="text-muted">dentist</small>
-                    </td>
-                    <td>
-                      <p class="text-muted">male</p>
-                    </td>
-                    <td class="text-right">
-                      <p>24y</p>
-                    </td>
-                    <td class="text-right"><button class="btn"><i class="las la-check-circle"></i></button><button class="btn"><i class="las la-times-circle"></i></button></td>
-                    <td><button class="btn btn-sm"><i class="las la-ellipsis-h"></i></button></td>
-                  </tr>
-                  <tr>
-                    <td><img class="rounded-circle" src="../SiteAssets/images/man.svg" loading="lazy" /></td>
-                    <td>
-                      <p>john doe</p><small class="text-muted">dentist</small>
-                    </td>
-                    <td>
-                      <p class="text-muted">male</p>
-                    </td>
-                    <td class="text-right">
-                      <p>24y</p>
-                    </td>
-                    <td class="text-right"><button class="btn"><i class="las la-check-circle"></i></button><button class="btn"><i class="las la-times-circle"></i></button></td>
-                    <td><button class="btn btn-sm"><i class="las la-ellipsis-h"></i></button></td>
-                  </tr>
-                  <tr>
-                    <td><img class="rounded-circle" src="../SiteAssets/images/man.svg" loading="lazy" /></td>
-                    <td>
-                      <p>john doe</p><small class="text-muted">dentist</small>
-                    </td>
-                    <td>
-                      <p class="text-muted">male</p>
-                    </td>
-                    <td class="text-right">
-                      <p>24y</p>
-                    </td>
-                    <td class="text-right"><button class="btn"><i class="las la-check-circle"></i></button><button class="btn"><i class="las la-times-circle"></i></button></td>
-                    <td><button class="btn btn-sm"><i class="las la-ellipsis-h"></i></button></td>
-                  </tr>
+                  <?php while ($data7 = mysqli_fetch_assoc($row7)) { ?>
+                    <tr>
+                      <!-- <td><img class="rounded-circle" src="" loading="lazy" /></td> -->
+                      <td>
+                        <p>Dr. <?php echo $data7['patient_name'];?></p><small class="text-muted"><?php echo $data7['covid_test_status'];?></small>
+                      </td>
+                      <td>
+                        <p class="text-muted"><?php echo $data7['gender']; ?></p>
+                      </td>
+                      <td class="text-right">
+                        <p><?php echo $data7['cnic']; ?></p>
+                      </td>
+                      <td class="text-right">
+                        <p><?php echo $data7['hospital_name']; ?></p>
+                      </td>
+                      <!-- <td class="text-right"><button class="btn btn-dark-red-f btn-sm">appointment</button></td> -->
+                      <!-- <td><button class="btn btn-sm"><i class="las la-ellipsis-h"></i></button></td> -->
+                    </tr>
+                  <?php } ?>
                 </tbody>
               </table>
             </div>

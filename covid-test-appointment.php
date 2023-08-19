@@ -7,7 +7,7 @@ if (isset($_SESSION['profile'])) {
     // INSERT INTO `vaccination_bookings`( `first_name`, `last_name`, `email`, `phone`, `cnic`, `dob`, `gender`, `city`, `vaccine`, `vaccination_hospital`, `vaccination_specialist`, `date_of_appointment`, `time_of_appointment`, `vaccine_dose`, `vaccine_status`) VALUES ('Rabnawaz','Abdul Khaliq','rabnawaz@gmail.com','03178873513','5150168709913','2001-12-07','Male','Karachi','Pfizer','Jinnah Hospital','Nasir','2023-08-01','11:00','2','Vaccinated');
 
     $e = $_SESSION['profile'];
-    $q1 = "SELECT * FROM `users` WHERE `email`='$e' ";
+    $q1 = "SELECT * FROM `users` WHERE `email`='$e' OR `phone`='$e'";
     $run1 = mysqli_query($db, $q1);
     $data1 = mysqli_fetch_assoc($run1);
 

@@ -28,6 +28,11 @@ $q6 = "SELECT * FROM `vaccines`";
 $row6 = mysqli_query($db, $q6);
 $count6 = mysqli_num_rows($row6);
 
+$hc = $_SESSION['hospital_code'];
+$q7 = "SELECT * FROM `covid_test_report` WHERE `hospital_code`='$hc' AND `covid_test_status`='Pending'";
+$row7 = mysqli_query($db, $q7);
+$count7 = mysqli_num_rows($row7);
+
 ?>
 
 <div class="main-content">
@@ -226,62 +231,25 @@ $count6 = mysqli_num_rows($row6);
             <div class="card-body">
               <table class="table table-borderless table-hover table-responsive-md">
                 <tbody>
-                  <tr>
-                    <td><img class="rounded-circle" src="../SiteAssets/images/man.svg" loading="lazy" /></td>
-                    <td>
-                      <p>john doe</p><small class="text-muted">dentist</small>
-                    </td>
-                    <td>
-                      <p class="text-muted">male</p>
-                    </td>
-                    <td class="text-right">
-                      <p>24y</p>
-                    </td>
-                    <td class="text-right"><button class="btn"><i class="las la-check-circle"></i></button><button class="btn"><i class="las la-times-circle"></i></button></td>
-                    <td><button class="btn btn-sm"><i class="las la-ellipsis-h"></i></button></td>
-                  </tr>
-                  <tr>
-                    <td><img class="rounded-circle" src="../SiteAssets/images/man.svg" loading="lazy" /></td>
-                    <td>
-                      <p>john doe</p><small class="text-muted">dentist</small>
-                    </td>
-                    <td>
-                      <p class="text-muted">male</p>
-                    </td>
-                    <td class="text-right">
-                      <p>24y</p>
-                    </td>
-                    <td class="text-right"><button class="btn"><i class="las la-check-circle"></i></button><button class="btn"><i class="las la-times-circle"></i></button></td>
-                    <td><button class="btn btn-sm"><i class="las la-ellipsis-h"></i></button></td>
-                  </tr>
-                  <tr>
-                    <td><img class="rounded-circle" src="../SiteAssets/images/man.svg" loading="lazy" /></td>
-                    <td>
-                      <p>john doe</p><small class="text-muted">dentist</small>
-                    </td>
-                    <td>
-                      <p class="text-muted">male</p>
-                    </td>
-                    <td class="text-right">
-                      <p>24y</p>
-                    </td>
-                    <td class="text-right"><button class="btn"><i class="las la-check-circle"></i></button><button class="btn"><i class="las la-times-circle"></i></button></td>
-                    <td><button class="btn btn-sm"><i class="las la-ellipsis-h"></i></button></td>
-                  </tr>
-                  <tr>
-                    <td><img class="rounded-circle" src="../SiteAssets/images/man.svg" loading="lazy" /></td>
-                    <td>
-                      <p>john doe</p><small class="text-muted">dentist</small>
-                    </td>
-                    <td>
-                      <p class="text-muted">male</p>
-                    </td>
-                    <td class="text-right">
-                      <p>24y</p>
-                    </td>
-                    <td class="text-right"><button class="btn"><i class="las la-check-circle"></i></button><button class="btn"><i class="las la-times-circle"></i></button></td>
-                    <td><button class="btn btn-sm"><i class="las la-ellipsis-h"></i></button></td>
-                  </tr>
+                <?php while ($data7 = mysqli_fetch_assoc($row7)) { ?>
+                    <tr>
+                      <!-- <td><img class="rounded-circle" src="" loading="lazy" /></td> -->
+                      <td>
+                        <p>Dr. <?php echo $data7['patient_name'];?></p><small class="text-muted"><?php echo $data7['covid_test_status'];?></small>
+                      </td>
+                      <td>
+                        <p class="text-muted"><?php echo $data7['gender']; ?></p>
+                      </td>
+                      <td class="text-right">
+                        <p><?php echo $data7['cnic']; ?></p>
+                      </td>
+                      <td class="text-right">
+                        <p><?php echo $data7['hospital_name']; ?></p>
+                      </td>
+                      <!-- <td class="text-right"><button class="btn btn-dark-red-f btn-sm">appointment</button></td> -->
+                      <!-- <td><button class="btn btn-sm"><i class="las la-ellipsis-h"></i></button></td> -->
+                    </tr>
+                  <?php } ?>
                 </tbody>
               </table>
             </div>

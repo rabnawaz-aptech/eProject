@@ -4,24 +4,24 @@ include 'header.php';
 if (isset($_POST['submit'])) {
     $s = $_POST['search'];
     // $hc = $_SESSION['hospital_code'];
-    $q1 = "SELECT * FROM `covid_test_report` WHERE `covid_test_status`='Scheduled' AND `cnic`='$s'";
+    $q1 = "SELECT * FROM `vaccination_bookings` WHERE `vaccine_status`='Scheduled' AND `cnic`='$s'";
     $row1 = mysqli_query($db, $q1);
 
-    $q2 = "SELECT * FROM `covid_test_report` WHERE `covid_test_status`='Pending' AND `cnic`='$s'";
+    $q2 = "SELECT * FROM `vaccination_bookings` WHERE `vaccine_status`='Pending' AND `cnic`='$s'";
     $row2 = mysqli_query($db, $q2);
 
-    $q3 = "SELECT * FROM `covid_test_report` WHERE `covid_test_status`='Vaccinated' AND `cnic`='$s'";
+    $q3 = "SELECT * FROM `vaccination_bookings` WHERE `vaccine_status`='Vaccinated' AND `cnic`='$s'";
     $row3 = mysqli_query($db, $q3);
 } else {
 
     // $hc = $_SESSION['hospital_code'];
-    $q1 = "SELECT * FROM `covid_test_report` WHERE `covid_test_status`='Scheduled'";
+    $q1 = "SELECT * FROM `vaccination_bookings` WHERE `vaccine_status`='Scheduled'";
     $row1 = mysqli_query($db, $q1);
 
-    $q2 = "SELECT * FROM `covid_test_report` WHERE `covid_test_status`='Pending'";
+    $q2 = "SELECT * FROM `vaccination_bookings` WHERE `vaccine_status`='Pending'";
     $row2 = mysqli_query($db, $q2);
 
-    $q3 = "SELECT * FROM `covid_test_report` WHERE `covid_test_status`='Positive' OR  `covid_test_status`='Negative'";
+    $q3 = "SELECT * FROM `vaccination_bookings` WHERE `vaccine_status`='Vaccinated'";
     $row3 = mysqli_query($db, $q3);
 }
 
@@ -59,7 +59,7 @@ if (isset($_POST['submit'])) {
                 <thead>
                     <tr>
                         <th>patient ID</th>
-                        <th>Test name</th>
+                        <th>vaccine name</th>
                         <th>patient name</th>
                         <th>date of birth</th>
                         <th>gender</th>
@@ -72,14 +72,14 @@ if (isset($_POST['submit'])) {
                     <?php while ($data1 = mysqli_fetch_assoc($row1)) { ?>
                         <tr>
                             <td><?php echo $data1['id']; ?></td>
-                            <td><?php echo $data1['test_name']; ?></td>
-                            <td><img class="rounded-circle" src="../SiteAssets/images/people.svg" loading="lazy" /><span class="ml-2"><a href="bookings-d.php?id=<?php echo $data1['id']; ?>" style="color: #000;"><?php echo $data1['patient_name']; ?></a></span></td>
+                            <td><?php echo $data1['vaccine']; ?></td>
+                            <td><img class="rounded-circle" src="../SiteAssets/images/people.svg" loading="lazy" /><span class="ml-2"><a href="vaccination-d.php?id=<?php echo $data1['id']; ?>" style="color: #000;"><?php echo $data1['first_name']; ?></a></span></td>
                             <td><?php echo $data1['dob']; ?></td>
                             <td><?php echo $data1['gender']; ?></td>
                             <td><?php echo $data1['city']; ?></td>
                             <td><?php echo $data1['cnic']; ?></td>
                             <!-- <td><a class="view-more btn btn-sm btn-dark-red-f" href="details.html">view profile</a></td> -->
-                            <td><?php echo $data1['covid_test_status']; ?></td>
+                            <td><?php echo $data1['vaccine_status'] . "(" . $data1['vaccine_dose'] . ")"; ?></td>
                         </tr>
                     <?php } ?>
                 </tbody>
@@ -91,7 +91,7 @@ if (isset($_POST['submit'])) {
                 <thead>
                     <tr>
                         <th>patient ID</th>
-                        <th>Test name</th>
+                        <th>vaccine name</th>
                         <th>patient name</th>
                         <th>date of birth</th>
                         <th>gender</th>
@@ -104,14 +104,14 @@ if (isset($_POST['submit'])) {
                     <?php while ($data2 = mysqli_fetch_assoc($row2)) { ?>
                         <tr>
                             <td><?php echo $data2['id']; ?></td>
-                            <td><?php echo $data2['test_name']; ?></td>
-                            <td><img class="rounded-circle" src="../SiteAssets/images/people.svg" loading="lazy" /><span class="ml-2"><a href="bookings-d.php?id=<?php echo $data2['id']; ?>" style="color: #000;"><?php echo $data2['patient_name']; ?></a></span></td>
+                            <td><?php echo $data2['vaccine']; ?></td>
+                            <td><img class="rounded-circle" src="../SiteAssets/images/people.svg" loading="lazy" /><span class="ml-2"><a href="vaccination-d.php?id=<?php echo $data2['id']; ?>" style="color: #000;"><?php echo $data2['first_name']; ?></a></span></td>
                             <td><?php echo $data2['dob']; ?></td>
                             <td><?php echo $data2['gender']; ?></td>
                             <td><?php echo $data2['city']; ?></td>
                             <td><?php echo $data2['cnic']; ?></td>
                             <!-- <td><a class="view-more btn btn-sm btn-dark-red-f" href="details.html">view profile</a></td> -->
-                            <td><?php echo $data2['covid_test_status']; ?></td>
+                            <td><?php echo $data2['vaccine_status'] . "(" . $data2['vaccine_dose'] . ")"; ?></td>
                         </tr>
                     <?php } ?>
                 </tbody>
@@ -123,7 +123,7 @@ if (isset($_POST['submit'])) {
                 <thead>
                     <tr>
                         <th>patient ID</th>
-                        <th>Test name</th>
+                        <th>vaccine name</th>
                         <th>patient name</th>
                         <th>date of birth</th>
                         <th>gender</th>
@@ -136,14 +136,14 @@ if (isset($_POST['submit'])) {
                     <?php while ($data3 = mysqli_fetch_assoc($row3)) { ?>
                         <tr>
                             <td><?php echo $data3['id']; ?></td>
-                            <td><?php echo $data3['test_name']; ?></td>
-                            <td><img class="rounded-circle" src="../SiteAssets/images/people.svg" loading="lazy" /><span class="ml-2"><a href="bookings-d.php?id=<?php echo $data3['id']; ?>" style="color: #000;"><?php echo $data3['patient_name']; ?></a></span></td>
+                            <td><?php echo $data3['vaccine']; ?></td>
+                            <td><img class="rounded-circle" src="../SiteAssets/images/people.svg" loading="lazy" /><span class="ml-2"><a href="vaccination-d.php?id=<?php echo $data3['id']; ?>" style="color: #000;"><?php echo $data3['first_name']; ?></a></span></td>
                             <td><?php echo $data3['dob']; ?></td>
                             <td><?php echo $data3['gender']; ?></td>
                             <td><?php echo $data3['city']; ?></td>
                             <td><?php echo $data3['cnic']; ?></td>
                             <!-- <td><a class="view-more btn btn-sm btn-dark-red-f" href="details.html">view profile</a></td> -->
-                            <td><?php echo $data3['covid_test_status']; ?></td>
+                            <td><?php echo $data3['vaccine_status'] . "(" . $data3['vaccine_dose'] . ")"; ?></td>
                         </tr>
                     <?php } ?>
                 </tbody>
