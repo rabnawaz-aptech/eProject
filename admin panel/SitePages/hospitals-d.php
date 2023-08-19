@@ -1,7 +1,7 @@
 <?php
 include 'header.php';
 $id = $_GET['id'];
-$q1 = "SELECT * FROM `specialists` WHERE `id`='$id'";
+$q1 = "SELECT * FROM `hospitals` WHERE `id`='$id'";
 $row1 = mysqli_query($db, $q1);
 $data1 = mysqli_fetch_assoc($row1);
 ?>
@@ -14,12 +14,12 @@ $data1 = mysqli_fetch_assoc($row1);
             <div class="col-md-8">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#" style="color: #247cff;">specialists</a></li>
-                        <li class="breadcrumb-item active" aria-current="page"><?php echo $data1['first_name'] . " " . $data1['last_name']; ?></li>
+                        <li class="breadcrumb-item"><a href="#" style="color: #247cff;">hospitals</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><?php echo $data1['name']; ?></li>
                     </ol>
                 </nav>
             </div>
-            <!-- <div class="col-md-4"><button class="btn btn-dark-red-f-gr"><i class="las la-edit"></i>edit patient</button></div> -->
+            <div class="col-md-4"><a href="hospitals-e.php?id=<?php echo $data1['id']; ?>"><button class="btn btn-dark-red-f-gr"><i class="las la-edit"></i>edit hospital</button></a></div>
         </div>
         <div class="section patient-details-section">
             <div class="row">
@@ -36,37 +36,28 @@ $data1 = mysqli_fetch_assoc($row1);
                                                         <div class="form-group"><label>Id</label><input class="form-control" readonly="readonly" value="<?php echo $data1['id']; ?>" /></div>
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <div class="form-group"><label>First Name</label><input class="form-control" readonly="readonly" value="<?php echo $data1['first_name']; ?>" /></div>
+                                                        <div class="form-group"><label>Name</label><input class="form-control" readonly="readonly" value="<?php echo $data1['name']; ?>" /></div>
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <div class="form-group"><label>Last Name</label><input class="form-control" readonly="readonly" value="<?php echo $data1['last_name']; ?>" /></div>
+                                                        <div class="form-group"><label>hospital code</label><input class="form-control" readonly="readonly" value="<?php echo $data1['hospital_code']; ?>" /></div>
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <div class="form-group"><label>CNIC</label><input class="form-control" readonly="readonly" value="<?php echo $data1['cnic']; ?>" /></div>
+                                                        <div class="form-group"><label>email</label><input class="form-control" readonly="readonly" value="<?php echo $data1['email']; ?>" /></div>
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <div class="form-group"><label>gender</label><input class="form-control" readonly="readonly" value="<?php echo $data1['gender']; ?>" /></div>
+                                                        <div class="form-group"><label>Password</label><input class="form-control" readonly="readonly" value="<?php echo $data1['pwd']; ?>" /></div>
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <div class="form-group"><label>date of birth</label><input class="form-control" readonly="readonly" value="<?php echo $data1['dob']; ?>" /></div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group"><label>phone number</label><input class="form-control" readonly="readonly" value="<?php echo $data1['phone']; ?>" /></div>
+                                                        <div class="form-group"><label>Phone</label><input class="form-control" readonly="readonly" value="<?php echo $data1['phone']; ?>" /></div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group"><label>city</label><input class="form-control" readonly="readonly" value="<?php echo $data1['city']; ?>" /></div>
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <div class="form-group"><label>hospital</label><input class="form-control" readonly="readonly" value="<?php echo $data1['hsptl']; ?>" /></div>
+                                                        <div class="form-group"><label>address</label><input class="form-control" readonly="readonly" value="<?php echo $data1['address']; ?>" /></div>
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <div class="form-group"><label>hospital code</label><input class="form-control" readonly="readonly" value="<?php echo $data1['hsptl_code']; ?>" /></div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group"><label>Specialist Id</label><input class="form-control" readonly="readonly" value="<?php echo $data1['spltid']; ?>" /></div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group"><label>Role</label><input class="form-control" readonly="readonly" value="<?php echo $data1['role']; ?>" /></div>
+                                                        <div class="form-group"><label>no. of specialists</label><input class="form-control" readonly="readonly" value="<?php echo $data1['no_of_specialists']; ?>" /></div>
                                                     </div>
                                                 </div>
                                             </div>

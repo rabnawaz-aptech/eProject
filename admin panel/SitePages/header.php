@@ -5,7 +5,7 @@ include 'db.php';
 if (isset($_SESSION['admin'])) {
 
   $admin = $_SESSION['admin'];
-  $q = "SELECT * FROM `users` WHERE `email` = '$admin' OR `phone` = '$admin'";
+  $q = "SELECT * FROM `users` WHERE `email` = '$admin' OR `phone`='$admin'";
   $run = mysqli_query($db, $q);
   $data = mysqli_fetch_assoc($run);
 
@@ -44,44 +44,13 @@ if (isset($_SESSION['admin'])) {
 
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg shadow-sm fixed-top"><a class="navbar-brand" href=""><img src="../SiteAssets/images/hospital-website.svg" /><span>CTVS</span></a>
+      <nav class="navbar navbar-expand-lg shadow-sm fixed-top"><a class="navbar-brand" href="dashboard.php" title="Covid Test and Vaccination System"><span>CTVS</span></a>
         <div class="navbar-collapse">
           <ul class="navbar-nav">
-            <li class="nav-item"><a class="nav-link"><i class="las la-question-circle"></i></a></li>
-            <li class="nav-item dropdown dropleft"><a class="nav-link notification-dropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="badge badge-pill badge-primary" style="float:right;margin-bottom:-10px;"></span><i class="las la-bell"></i></a>
-              <div class="dropdown-menu notification-dropdown-menu shadow-lg" aria-labelledby="notification-dropdown">
-                <div class="dropdown-title"><a href="">notifications<span class="ml-2 notifications-count">(3)</span></a><a class="float-right" href="">mark all as read</a></div>
-                <div class="dropdown-body">
-                  <ul class="list-unstyled">
-                    <li class="media"><a class="notification-card" href=""><img class="mr-3" src="../SiteAssets/images/inbox.svg" alt="..." />
-                        <div class="media-body">
-                          <h6 class="mt-0 mb-1">collaboration tools available</h6>
-                          <p>Cras sit amet nibh libero, in gravida nulla.</p><small class="text-muted">21.03.2020, 13.02</small>
-                        </div>
-                      </a></li>
-                    <li class="media"><a class="notification-card" href=""><img class="mr-3" src="../SiteAssets/images/inbox.svg" alt="..." />
-                        <div class="media-body">
-                          <h6 class="mt-0 mb-1">use the new app launcher</h6>
-                          <p>Cras sit amet nibh libero, in gravida nulla.</p><small class="text-muted">21.03.2020, 13.02</small>
-                        </div>
-                      </a></li>
-                    <li class="media"><a class="notification-card" href=""><img class="mr-3" src="../SiteAssets/images/inbox.svg" alt="..." />
-                        <div class="media-body">
-                          <h6 class="mt-0 mb-1">the new dashboard abailable</h6>
-                          <p>Cras sit amet nibh libero, in gravida nulla.</p><small class="text-muted">21.03.2020, 13.02</small>
-                        </div>
-                      </a></li>
-                  </ul>
-                </div>
-                <div class="dropdown-footer text-center"><a href="notifications.html">view more</a></div>
-              </div>
-            </li>
-            <li class="nav-item">
-              <div class="nav-link"><span class="vertical-divider"></span></div>
-            </li>
+            
             <li class="nav-item"><a class="nav-link profile-dropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="rounded-circle" src="<?php echo $_SESSION['dp']; ?>" /><span class="d"><?php echo $_SESSION['first_name']; ?></span></a>
               <div class="dropdown">
-                <div class="dropdown-menu shadow-lg profile-dropdown-menu" aria-labelledby="profile-dropdown"><a class="dropdown-item" href="#"><i class="las la-user mr-2"></i>profile</a><a class="dropdown-item" href="#"><i class="las la-cog mr-2"></i>settings</a></div>
+                <div class="dropdown-menu shadow-lg profile-dropdown-menu" aria-labelledby="profile-dropdown"><a class="dropdown-item" href="settings.php"><i class="las la-cog mr-2"></i>setting</a><a class="dropdown-item" href="../../logout.php"><i class="las la-user mr-2"></i>logout</a></div>
               </div>
             </li>
           </ul>

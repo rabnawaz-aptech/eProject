@@ -45,26 +45,28 @@ if (isset($_POST['submit'])) {
             <table class="table table-hover table-responsive-lg">
                 <thead>
                     <tr>
+                        <th>Id</th>
                         <th>name</th>
+                        <th>hospital code</th>
                         <th>email</th>
                         <th>City</th>
                         <th>phone no.</th>
-                        <th>hospital code</th>
                         <th>No. of specialists</th>
-                        <th></th>
+                        <!-- <th></th> -->
                         <!-- <th></th> -->
                     </tr>
                 </thead>
                 <tbody>
                     <?php while ($data1 = mysqli_fetch_assoc($row1)) { ?>
                         <tr>
-                            <td><span class="ml-2"><?php echo $data1['name']; ?></span></td>
-                            <td class="text-lowercase text-muted"><a href=""><?php echo $data1['email']; ?></a></td>
+                            <td><span class="ml-2"><?php echo $data1['id']; ?></span></td>
+                            <td><a href="hospitals-d.php?id=<?php echo $data1['id']; ?>"><span class="ml-2"><?php echo $data1['name']; ?></span></a></td>
+                            <td class="text-muted"><a href=""><?php echo $data1['hospital_code']; ?></a></td>
+                            <td class="text-lowercase"><a href=""><?php echo $data1['email']; ?></a></td>
                             <td class="text-muted"><?php echo $data1['city']; ?></td>
                             <td><?php echo $data1['phone']; ?></td>
-                            <td class="text-muted"><a href=""><?php echo $data1['hospital_code']; ?></a></td>
                             <td><?php echo $data1['no_of_specialists']; ?></td>
-                            <td><button class="btn btn-sm btn-dark-red-f">appointment</button></td>
+                            <!-- <td><button class="btn btn-sm btn-dark-red-f">appointment</button></td> -->
                             <!-- <td><a href=""><i class="las la-ellipsis-h"></i></a></td> -->
                         </tr>
                     <?php } ?>

@@ -4,7 +4,7 @@ include 'header.php';
 
 if (isset($_SESSION['profile'])) {
   $e = $_SESSION['profile'];
-  $q1 = "SELECT * FROM `users` WHERE `email`='$e' OR `phone` = '$p'";
+  $q1 = "SELECT * FROM `users` WHERE `email`='$e' OR `phone`='$p'";
   $run = mysqli_query($db, $q1);
   $data = mysqli_fetch_assoc($run);
   //  print_r($q1);
