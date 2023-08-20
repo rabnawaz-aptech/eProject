@@ -2,10 +2,10 @@
 include 'h-header.php';
 $id = $_GET['id'];
 $hc = $_SESSION['hospital_code'];
-$q1 = "SELECT * FROM `vaccination_bookings` WHERE `hospital_code`='$hc' AND `id`='$id'";
+$q1 = "SELECT * FROM `covid_test_report` WHERE `hospital_code`='$hc' AND `id`='$id'";
 $row1 = mysqli_query($db, $q1);
 $data1 = mysqli_fetch_assoc($row1);
-if ($data1['vaccine_status'] == 'Vaccinated') {
+if ($data1['covid_test_status'] == 'Positive' || $data1['covid_test_status'] == 'Positive') {
     echo "<style>.hb{display:none;}</style>";
 }
 ?>
@@ -18,8 +18,8 @@ if ($data1['vaccine_status'] == 'Vaccinated') {
             <div class="col-md-8">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#" style="color: #247cff;">patients</a></li>
-                        <li class="breadcrumb-item active" aria-current="page"><?php echo $data1['first_name']; ?></li>
+                        <li class="breadcrumb-item"><a href="h-bookings.php" style="color: #247cff;">patients</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><?php echo $data1['patient_name']; ?></li>
                     </ol>
                 </nav>
             </div>
@@ -41,7 +41,7 @@ if ($data1['vaccine_status'] == 'Vaccinated') {
                                                         <div class="form-group"><label>Id</label><input class="form-control" name="id" readonly="readonly" value="<?php echo $data1['id']; ?>" required></div>
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <div class="form-group"><label>Patient Name</label><input class="form-control" name="fname" readonly="readonly" value="<?php echo $data1['first_name']; ?>" required></div>
+                                                        <div class="form-group"><label>Patient Name</label><input class="form-control" name="fname" readonly="readonly" value="<?php echo $data1['patient_name']; ?>" required></div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group"><label>CNIC</label><input class="form-control" name="cnic" readonly="readonly" value="<?php echo $data1['cnic']; ?>" required></div>
@@ -72,36 +72,36 @@ if ($data1['vaccine_status'] == 'Vaccinated') {
                                                         <div class="form-group"><label>city</label><input class="form-control" name="city" readonly="readonly" value="<?php echo $data1['city']; ?>" required></div>
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <div class="form-group"><label>hospital name</label><input class="form-control" name="hospitalname" readonly="readonly" value="<?php echo $data1['vaccination_hospital']; ?>" required></div>
+                                                        <div class="form-group"><label>hospital name</label><input class="form-control" name="hospitalname" readonly="readonly" value="<?php echo $data1['hospital_name']; ?>" required></div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group"><label>hospital code</label><input class="form-control" name="hospitalcode" readonly="readonly" value="<?php echo $data1['hospital_code']; ?>" required></div>
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <div class="form-group"><label>Vaccine Name</label><input class="form-control" name="vaccine" readonly="readonly" value="<?php echo $data1['vaccine']; ?>" required></div>
+                                                        <div class="form-group"><label>test Name</label><input class="form-control" name="test" readonly="readonly" value="<?php echo $data1['test_name']; ?>" required></div>
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <div class="form-group"><label>appointment Date</label><input type="date" class="form-control" name="doa" value="<?php echo $data1['date_of_appointment']; ?>" required></div>
+                                                        <div class="form-group"><label>appointment Date</label><input type="date" class="form-control" name="doa" value="<?php echo $data1['covid_test_date']; ?>" required></div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group"><label>appointment time</label><input class="form-control" name="toa" value="<?php echo $data1['time_of_appointment']; ?>" required></div>
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <div class="form-group"><label>Vaccine status</label>
+                                                        <div class="form-group"><label>test status</label>
                                                             <!-- <input class="form-control" value="" /> -->
-                                                            <select class="form-control" name="vaccinestatus" required>
-                                                                <option value="<?php echo $data1['vaccine_status']; ?>"><?php echo $data1['vaccine_status']; ?></option>
+                                                            <select class="form-control" name="teststatus" required>
+                                                                <option value="<?php echo $data1['covid_test_status']; ?>"><?php echo $data1['covid_test_status']; ?></option>
                                                                 <option value="<?php
-                                                                                if ($data1['vaccine_status'] == 'Pending') {
+                                                                                if ($data1['covid_test_status'] == 'Pending') {
                                                                                     echo 'Scheduled';
-                                                                                } elseif ($data1['vaccine_status'] == 'Scheduled') {
-                                                                                    echo 'Vaccinated';
+                                                                                } elseif ($data1['covid_test_status'] == 'Scheduled') {
+                                                                                    echo 'Test Done';
                                                                                 }
                                                                                 ?>"><?php
-                                                                                    if ($data1['vaccine_status'] == 'Pending') {
+                                                                                    if ($data1['covid_test_status'] == 'Pending') {
                                                                                         echo 'Scheduled';
-                                                                                    } elseif ($data1['vaccine_status'] == 'Scheduled') {
-                                                                                        echo 'Vaccinated';
+                                                                                    } elseif ($data1['covid_test_status'] == 'Scheduled') {
+                                                                                        echo 'Test Done';
                                                                                     }
                                                                                     ?></option>
                                                                 <!-- <option value="Vaccinated">Vaccinated</option> -->
@@ -109,19 +109,8 @@ if ($data1['vaccine_status'] == 'Vaccinated') {
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <div class="form-group"><label>Vaccine dose</label>
-                                                            <input class="form-control" name="vaccinedose" readonly="readonly" value="<?php 
-                                                            $uemail = $data1['email'];
-                                                            $q3 = "SELECT * FROM `users` WHERE `email`='$uemail'";
-                                                            $row3 = mysqli_query($db,$q3);
-                                                            $data3 = mysqli_fetch_assoc($row3);
-                                                            if($data3['vaccine doses'] == '0'){
-                                                                echo '1';
-                                                            }elseif($data3['vaccine doses'] == '1'){
-                                                                echo '2';
-                                                            }
-                                                            // echo $data3['vaccine_dose']; 
-                                                            ?>" required>
+                                                        <div class="form-group"><label>detailed report</label>
+                                                            <input class="form-control" name="vaccinedose" readonly="readonly" value="<?php echo $data1['detailed_report']; ?>" required>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4"><button class="btn btn-dark-red-f-gr" name="save"><i class="las la-save"></i>Save</button></div>
@@ -140,24 +129,24 @@ if ($data1['vaccine_status'] == 'Vaccinated') {
                                                     $vs = $_POST['vs'];
                                                     $hn = $_POST['hospitalname'];
                                                     $hscode = $_POST['hospitalcode'];
-                                                    $vaccine = $_POST['vaccine'];
+                                                    $test = $_POST['test'];
                                                     $doa = $_POST['doa'];
                                                     $toa = $_POST['toa'];
-                                                    $vaccinestatus = $_POST['vaccinestatus'];
-                                                    $vaccinedose = $_POST['vaccinedose'];
+                                                    $teststatus = $_POST['teststatus'];
+                                                    // $vaccinedose = $_POST['vaccinedose'];
 
-                                                    if($data1['vaccine_status'] == 'Pending'){
+                                                    if($data1['covid_test_status'] == 'Pending'){
 
-                                                        $qs = "UPDATE `vaccination_bookings` SET `vaccination_specialist`='$vs',`date_of_appointment`='$doa',`time_of_appointment`='$toa',`vaccine_status`='$vaccinestatus'  WHERE `id`='$id'";
+                                                        $qs = "UPDATE `covid_test_report` SET `doctor_name`='$vs',`covid_test_date`='$doa',`time_of_appointment`='$toa',`covid_test_status`='$teststatus'  WHERE `id`='$id'";
                                                         mysqli_query($db,$qs);
-                                                        echo "<script>window.open('h-vaccination.php','_self');</script>";
-                                                    }elseif($data1['vaccine_status'] == 'Scheduled'){
+                                                        echo "<script>window.open('h-bookings.php','_self');</script>";
+                                                    }elseif($data1['covid_test_status'] == 'Scheduled'){
 
-                                                        $qs = "UPDATE `vaccination_bookings` SET `vaccination_specialist`='$vs',`date_of_appointment`='$doa',`time_of_appointment`='$toa',`vaccine_status`='$vaccinestatus'  WHERE `id`='$id'";
-                                                        $qu = "UPDATE `users` SET `vaccine doses`='$vaccinedose',`vaccine`='$vaccine',`vaccine_status`='$vaccinestatus'  WHERE `cnic`='$cnic'";
-                                                        mysqli_query($db,$qs);
-                                                        mysqli_query($db,$qu);
-                                                        echo "<script>window.open('h-vaccination.php','_self');</script>";
+                                                        // $qs = "UPDATE `vaccination_bookings` SET `vaccination_specialist`='$vs',`date_of_appointment`='$doa',`time_of_appointment`='$toa',`vaccine_status`='$vaccinestatus'  WHERE `id`='$id'";
+                                                        // $qu = "UPDATE `users` SET `vaccine`='$vaccine',`vaccine_status`='$vaccinestatus'  WHERE `cnic`='$cnic'";
+                                                        // mysqli_query($db,$qs);
+                                                        // mysqli_query($db,$qu);
+                                                        echo "<script>window.open('h-bookings.php','_self');</script>";
                                                     }
 
                                                 }

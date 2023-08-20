@@ -37,7 +37,7 @@ if($data1['vaccine_status'] == 'Vaccinated'){
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        <div class="form-group"><label>Test Id</label><input class="form-control" readonly="readonly" value="<?php echo $data1['id']; ?>" /></div>
+                                                        <div class="form-group"><label>Id</label><input class="form-control" readonly="readonly" value="<?php echo $data1['id']; ?>" /></div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group"><label>Patient Name</label><input class="form-control" readonly="readonly" value="<?php echo $data1['first_name']; ?>" /></div>
@@ -70,7 +70,7 @@ if($data1['vaccine_status'] == 'Vaccinated'){
                                                         <div class="form-group"><label>Vaccine Name</label><input class="form-control" readonly="readonly" value="<?php echo $data1['vaccine']; ?>" /></div>
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <div class="form-group"><label>appointment Date</label><input class="form-control" readonly="readonly" value="<?php echo $data1['date_of_appointment']; ?>" /></div>
+                                                        <div class="form-group"><label>appointment Date</label><input type="date" class="form-control" readonly="readonly" value="<?php echo $data1['date_of_appointment']; ?>" /></div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group"><label>appointment time</label><input class="form-control" readonly="readonly" value="<?php echo $data1['time_of_appointment']; ?>" /></div>
