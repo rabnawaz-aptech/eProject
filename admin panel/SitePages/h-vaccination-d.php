@@ -61,7 +61,10 @@ if($data1['vaccine_status'] == 'Vaccinated'){
                                                         <div class="form-group"><label>city</label><input class="form-control" readonly="readonly" value="<?php echo $data1['city']; ?>" /></div>
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <div class="form-group"><label>hospital</label><input class="form-control" readonly="readonly" value="<?php echo $data1['vaccination_hospital']; ?>" /></div>
+                                                        <div class="form-group"><label>hospital name</label><input class="form-control" readonly="readonly" value="<?php echo $data1['vaccination_hospital']; ?>" /></div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group"><label>hospital code</label><input class="form-control" readonly="readonly" value="<?php echo $data1['hospital_code']; ?>" /></div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group"><label>Vaccine Name</label><input class="form-control" readonly="readonly" value="<?php echo $data1['vaccine']; ?>" /></div>
