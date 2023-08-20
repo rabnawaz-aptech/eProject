@@ -79,7 +79,7 @@ if (isset($_POST['submit'])) {
                             <td><?php echo $data1['city']; ?></td>
                             <td><?php echo $data1['cnic']; ?></td>
                             <!-- <td><a class="view-more btn btn-sm btn-dark-red-f" href="details.html">view profile</a></td> -->
-                            <td><?php echo $data1['vaccine_status'] . "(" . $data1['vaccine_dose'] . ")"; ?></td>
+                            <td><label class="label-blue"><?php echo $data1['vaccine_status'] . "(" . $data1['vaccine_dose'] . ")"; ?></label></td>
                         </tr>
                     <?php } ?>
                 </tbody>
@@ -111,7 +111,7 @@ if (isset($_POST['submit'])) {
                             <td><?php echo $data2['city']; ?></td>
                             <td><?php echo $data2['cnic']; ?></td>
                             <!-- <td><a class="view-more btn btn-sm btn-dark-red-f" href="details.html">view profile</a></td> -->
-                            <td><?php echo $data2['vaccine_status'] . "(" . $data2['vaccine_dose'] . ")"; ?></td>
+                            <td><label class="label-orange"><?php echo $data2['vaccine_status'] . "(" . $data2['vaccine_dose'] . ")"; ?></label></td>
                         </tr>
                     <?php } ?>
                 </tbody>
@@ -143,7 +143,7 @@ if (isset($_POST['submit'])) {
                             <td><?php echo $data3['city']; ?></td>
                             <td><?php echo $data3['cnic']; ?></td>
                             <!-- <td><a class="view-more btn btn-sm btn-dark-red-f" href="details.html">view profile</a></td> -->
-                            <td><?php echo $data3['vaccine_status'] . "(" . $data3['vaccine_dose'] . ")"; ?></td>
+                            <td><label class="label-green"><?php echo $data3['vaccine_status'] . "(" . $data3['vaccine_dose'] . ")"; ?></label></td>
                         </tr>
                     <?php } ?>
                 </tbody>

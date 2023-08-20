@@ -212,8 +212,12 @@ if (isset($_SESSION['profile'])) {
                                         // $dob = $data1['dob'];
                                         // $gender = $data1['gender'];
                                         // $city = $data1['city'];
+                                        $sc = "SELECT * FROM `hospitals` WHERE `name`='$hospital'";
+                                        $scrun = mysqli_query($db,$sc);
+                                        $scdata = mysqli_fetch_assoc($scrun);
+                                        $hc = $scdata['hospital_code'];
 
-                                        $book = "INSERT INTO `covid_test_report`(`test_name`, `patient_name`, `cnic`, `dob`, `gender`, `phone`, `city`, `hospital_name`, `covid_test_date`, `time_of_appointment`) VALUES ('$ct','$fn','$cnic','$dob','$gender','$p','$city','$hospital','$doa','$toa')";
+                                        $book = "INSERT INTO `covid_test_report`(`test_name`, `patient_name`, `cnic`, `dob`, `gender`, `phone`, `city`, `hospital_name`, `hospital_code`, `covid_test_date`, `time_of_appointment`) VALUES ('$ct','$fn','$cnic','$dob','$gender','$p','$city','$hospital','$hc','$doa','$toa')";
 
                                         // print_r($book);
                                         // exit();

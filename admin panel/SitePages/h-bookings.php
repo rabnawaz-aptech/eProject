@@ -10,7 +10,7 @@ if (isset($_POST['submit'])) {
     $q2 = "SELECT * FROM `covid_test_report` WHERE `hospital_code`='$hc' AND `covid_test_status`='Pending' AND `cnic`='$s'";
     $row2 = mysqli_query($db, $q2);
 
-    $q3 = "SELECT * FROM `covid_test_report` WHERE `hospital_code`='$hc' AND `covid_test_status`='Done' AND `cnic`='$s'";
+    $q3 = "SELECT * FROM `covid_test_report` WHERE `hospital_code`='$hc' AND `covid_test_status`='Test Done' AND `cnic`='$s'";
     $row3 = mysqli_query($db, $q3);
 } else {
 
@@ -21,7 +21,7 @@ if (isset($_POST['submit'])) {
     $q2 = "SELECT * FROM `covid_test_report` WHERE `hospital_code`='$hc' AND `covid_test_status`='Pending'";
     $row2 = mysqli_query($db, $q2);
 
-    $q3 = "SELECT * FROM `covid_test_report` WHERE `hospital_code`='$hc' AND `covid_test_status`='Done'";
+    $q3 = "SELECT * FROM `covid_test_report` WHERE `hospital_code`='$hc' AND `covid_test_status`='Test Done'";
     $row3 = mysqli_query($db, $q3);
 }
 
@@ -157,7 +157,7 @@ if (isset($_POST['submit'])) {
                             <!-- <td><a class="view-more btn btn-sm btn-dark-red-f" href="details.html">view profile</a></td> -->
                             <td><label class="
                         <?php
-                        if ($data3['covid_test_status'] == 'Done') {
+                        if ($data3['covid_test_status'] == 'Test Done') {
                             echo "label-green";
                         }
                         ?>

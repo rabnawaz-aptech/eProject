@@ -213,7 +213,12 @@ if (isset($_SESSION['profile'])) {
                                         $doa = $_POST['doa'];
                                         $toa = $_POST['toa'];
 
-                                        $book = "INSERT INTO `vaccination_bookings`(`first_name`, `last_name`, `email`, `phone`, `cnic`, `dob`, `gender`, `city`, `vaccine`, `vaccination_hospital`, `date_of_appointment`, `time_of_appointment`) VALUES('$fn','$ln','$email','$p','$cnic','$dob','$gender','$city','$cv','$hospital','$doa','$toa')";
+                                        $sc = "SELECT * FROM `hospitals` WHERE `name`='$hospital'";
+                                        $scrun = mysqli_query($db,$sc);
+                                        $scdata = mysqli_fetch_assoc($scrun);
+                                        $hc = $scdata['hospital_code'];
+
+                                        $book = "INSERT INTO `vaccination_bookings`(`first_name`, `last_name`, `email`, `phone`, `cnic`, `dob`, `gender`, `city`, `vaccine`, `vaccination_hospital`, `hospital_code`, `date_of_appointment`, `time_of_appointment`) VALUES('$fn','$ln','$email','$p','$cnic','$dob','$gender','$city','$cv','$hospital','$hc','$doa','$toa')";
                                         
                                         // print_r($book);
                                         // exit();
