@@ -1,5 +1,5 @@
 <?php
-include 'header.php';
+include 'h-header.php';
 ?>
 <link rel="stylesheet" href="../SiteAssets/css/pages/settings.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
@@ -12,74 +12,29 @@ include 'header.php';
         <div class="section profile-section">
             <div class="card container">
                 <div class="card-header">
-                    <h5>personal details</h5>
+                    <h5>Edit details</h5>
                     <p>This section contains your basic profile information like name, email etc</p>
                 </div>
                 <div class="card-body">
-                    <div class="sub-section col-lg-10 col-md-12">
-                        <div class="sub-section-title">
-                            <h6>profile picture</h6>
-                        </div>
-                        <div class="sub-section-body">
-                            <div class="row">
-                                <div class="col-lg-2 col-md-4">
-                                    <img class="rounded-circle" src="<?php echo $_SESSION['dp']; ?>" />
-                                </div>
-                                <div class="col-lg-6 col-md-8">
-                                    <div class="d-flex mb-2">
-                                        <form method="POST" enctype="multipart/form-data">
-                                            <!-- <label class="form-label">Pic:</label> -->
-                                            <input type="file" name="pic" required>
-                                    </div>
-                                    <div class="d-flex mb-2">
-                                        <button class="btn btn-sm btn-dark-red-f" name="changepic">
-                                            <i class="las la-upload"></i>upload new photo
-                                        </button>
-                                        </form>
-                                        <?php
-                                        if (isset($_POST['changepic'])) {
-
-
-                                            $id = $_SESSION['id'];
-                                            $f = $_FILES['pic']['name'];
-                                            $src = $_FILES['pic']['tmp_name'];
-                                            $des = "../SiteAssets/images/" . $f;
-                                            move_uploaded_file($src, $des);
-
-                                            $q3 = "UPDATE `users` SET `dp`='$des' WHERE `id`='$id'";
-                                            // exit();
-                                            // print_r($q3);
-
-                                            mysqli_query($db, $q3);
-
-                                            echo "<script>window.location.href = 'settings.php';</script>";
-                                        }
-                                        ?>
-                                        <button class="btn btn-sm btn-darker-grey-o ml-2">
-                                            <i class="las la-trash"></i>remove
-                                        </button>
-                                    </div>
-                                    <p>You can upload .jpg, .gif or .png image files</p>
-                                    <p>max file size<b> 3mb</b></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="sub-section col-md-12 col-lg-8">
                         <div class="sub-section-title">
-                            <h6>profile details</h6>
+                            <h6>hospital details</h6>
                         </div>
                         <div class="sub-section-body">
                             <div class="user-details-form">
                                 <div class="form-row">
                                     <div class="form-group col-sm-6">
                                         <form method="POST">
-                                            <label>first name</label>
-                                            <input class="form-control" name="first_name" value="<?php echo $_SESSION['first_name'] ?>" required />
+                                            <label>name</label>
+                                            <input class="form-control" name="name" value="<?php echo $_SESSION['name'] ?>" required />
                                     </div>
                                     <div class="form-group col-sm-6">
-                                        <label>last name</label>
-                                        <input class="form-control" name="last_name" value="<?php echo $_SESSION['last_name'] ?>" required />
+                                        <label>hospital code</label>
+                                        <input class="form-control" name="hospitalcode" value="<?php echo $_SESSION['hospital_code'] ?>" required />
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label>no. of specialists</label>
+                                        <input class="form-control" name="nos" value="<?php echo $_SESSION['no_of_specialists'] ?>" type="tel" required />
                                     </div>
                                     <div class="form-group col-sm-6">
                                         <label>email address</label>
@@ -89,6 +44,14 @@ include 'header.php';
                                     <div class="form-group col-sm-6">
                                         <label>telephone number</label>
                                         <input class="form-control" name="phone" value="<?php echo $_SESSION['phone'] ?>" type="tel" required />
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label>city</label>
+                                        <input class="form-control" name="city" value="<?php echo $_SESSION['city'] ?>" type="tel" required />
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label>address</label>
+                                        <input class="form-control" name="address" value="<?php echo $_SESSION['address'] ?>" type="tel" required />
                                     </div>
                                 </div>
                                 <button class="btn btn-dark-red-f-gr mt-4" name="submit" onclick="refreshMyPage()">
@@ -100,15 +63,18 @@ include 'header.php';
                                 if (isset($_POST['submit'])) {
 
                                     $id = $_SESSION['id'];
-                                    $fname = $_POST['first_name'];
-                                    $lname = $_POST['last_name'];
+                                    $name = $_POST['name'];
+                                    $hsptlcode = $_POST['hospitalcode'];
+                                    $nos = $_POST['nos'];
                                     $email = $_POST['email'];
+                                    $city = $_POST['city'];
+                                    $address = $_POST['address'];
                                     $phone = $_POST['phone'];
 
-                                    $q1 = "UPDATE `users` SET `first_name`='$fname', `last_name`='$lname', `email`='$email', `phone`='$phone' WHERE `id`='$id'";
+                                    $q1 = "UPDATE `hospitals` SET `name`='$name', `hospital_code`='$hsptlcode', `email`='$email', `phone`='$phone', `city`='$city', `address`='$address', `no_of_specialists`='$nos' WHERE `id`='$id'";
                                     mysqli_query($db, $q1);
 
-                                    echo "<script>window.location.href = 'settings.php';</script>";
+                                    echo "<script>window.open('h-settings.php','_self');</script>";
                                 }
                                 ?>
                             </div>
@@ -186,7 +152,7 @@ include 'header.php';
 
                                     if ($pwd == $opwd) {
 
-                                        $q2 = "UPDATE `users` SET `pwd`='$npwd' WHERE `id`='$id'";
+                                        $q2 = "UPDATE `hospitals` SET `pwd`='$npwd' WHERE `id`='$id'";
                                         mysqli_query($db, $q2);
 
                                         // echo "<script>window.location.href = 'settings.php';</script>";
