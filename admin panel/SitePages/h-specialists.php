@@ -2,6 +2,7 @@
 include 'h-header.php';
 
 if (isset($_POST['submit'])) {
+    $h = $_SESSION['hospital_code'];
     $s = $_POST['search'];
     $q1 = "SELECT * FROM `specialists` WHERE `hsptl_code`='$h' AND `cnic`='$s'";
     $row1 = mysqli_query($db, $q1);
@@ -49,24 +50,25 @@ if (isset($_POST['submit'])) {
                     <tr>
                         <th>name</th>
                         <th>gender</th>
-                        <th>specialization</th>
+                        <th>Specialist Id</th>
+                        <th>Role</th>
                         <th>CNIC</th>
                         <th>phone no.</th>
                         <th>City</th>
-                        <th></th>
                         <!-- <th></th> -->
                     </tr>
                 </thead>
                 <tbody>
                     <?php while ($data1 = mysqli_fetch_assoc($row1)) { ?>
                         <tr>
-                            <td><img class="rounded-circle mr-1" src="<?php echo $data1['dp']; ?>" loading="lazy" /><span class="ml-2"><?php echo $data1['first_name']; ?> <?php echo $data1['last_name']; ?></span></td>
+                            <td><img class="rounded-circle mr-1" src="<?php echo $data1['dp']; ?>" loading="lazy" /><a href="h-specialists-d.php?id=<?php echo $data1['id']; ?>" style="color: #000;"><span class="ml-2"><?php echo $data1['first_name']; ?> <?php echo $data1['last_name']; ?></span></a></td>
                             <td class="text-muted"><?php echo $data1['gender']; ?></td>
+                            <td class="text-muted"><a href=""><?php echo $data1['spltid']; ?></a></td>
                             <td><?php echo $data1['role']; ?></td>
                             <td class="text-lowercase text-muted"><a href=""><?php echo $data1['cnic']; ?></a></td>
                             <td><?php echo $data1['phone']; ?></td>
                             <td class="text-muted"><a href=""><?php echo $data1['city']; ?></a></td>
-                            <td><button class="btn btn-sm btn-dark-red-f">appointment</button></td>
+                            <!-- <td><button class="btn btn-sm btn-dark-red-f">appointment</button></td> -->
                             <!-- <td><a href=""><i class="las la-ellipsis-h"></i></a></td> -->
                         </tr>
                     <?php } ?>

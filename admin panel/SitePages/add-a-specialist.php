@@ -40,7 +40,7 @@ include 'h-header.php';
                                     <div class="form-group col-sm-6">
                                         <label>Gender</label>
                                         <select class="form-control" name="gender" placeholder="Gender" required>
-                                            <option>Select your gender</option>
+                                            <option>Select gender</option>
                                             <option value="Male">Male</option>
                                             <option value="Female">Female</option>
                                         </select>
@@ -61,7 +61,7 @@ include 'h-header.php';
                                     <div class="form-group col-sm-6">
                                         <label>City</label>
                                         <select class="form-control" name="city" placeholder="City" required>
-                                            <option>Select your city</option>
+                                            <option>Select city</option>
                                             <option value="Karachi">Karachi</option>
                                             <option value="Lahore">Lahore</option>
                                         </select>
