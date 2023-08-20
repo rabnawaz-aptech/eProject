@@ -14,7 +14,7 @@ $data1 = mysqli_fetch_assoc($row1);
             <div class="col-md-8">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#" style="color: #247cff;">hospitals</a></li>
+                        <li class="breadcrumb-item"><a href="hospitals.php" style="color: #247cff;">hospitals</a></li>
                         <li class="breadcrumb-item active" aria-current="page"><?php echo $data1['name']; ?></li>
                     </ol>
                 </nav>

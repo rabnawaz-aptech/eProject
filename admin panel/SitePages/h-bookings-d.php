@@ -18,7 +18,7 @@ if($data1['covid_test_status'] == 'Negative' || $data1['covid_test_status'] == '
             <div class="col-md-8">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="h-bookings.php" style="color: #247cff;">patients</a></li>
+                        <li class="breadcrumb-item"><a href="h-bookings.php" style="color: #247cff;">bookings</a></li>
                         <li class="breadcrumb-item active" aria-current="page"><?php echo $data1['patient_name']; ?></li>
                     </ol>
                 </nav>

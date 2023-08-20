@@ -64,18 +64,18 @@ if (isset($_POST['submit'])) {
                             <!-- <td><a class="view-more btn btn-sm btn-dark-red-f" href="details.html">view profile</a></td> -->
                             <td><label class="
                         <?php
-                        if ($data1['covid_test_status'] == 'Covid Positive') {
+                        if ($data1['covid_test_status'] == 'Positive') {
                             echo "label-pink";
-                        } elseif ($data1['vaccine_status'] == 'Not Vaccinated') {
-                            echo "label-orange";
                         } elseif ($data1['vaccine_status'] == 'Pending') {
+                            echo "label-orange";
+                        } elseif ($data1['vaccine_status'] == 'Scheduled') {
                             echo "label-blue";
                         } elseif ($data1['vaccine_status'] == 'Vaccinated') {
                             echo "label-green";
                         }
                         ?>
                         "><?php
-                            if ($data1['covid_test_status'] == 'Covid Positive') {
+                            if ($data1['covid_test_status'] == 'Positive') {
                                 echo $data1['covid_test_status'];
                             } elseif ($data1['vaccine_status'] == 'Not Vaccinated' || $data1['vaccine_status'] == 'Pending') {
                                 echo $data1['vaccine_status'];

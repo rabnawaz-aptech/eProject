@@ -10,7 +10,7 @@ if (isset($_POST['submit'])) {
     $q2 = "SELECT * FROM `covid_test_report` WHERE `covid_test_status`='Pending' AND `cnic`='$s'";
     $row2 = mysqli_query($db, $q2);
 
-    $q3 = "SELECT * FROM `covid_test_report` WHERE `covid_test_status`='Vaccinated' AND `cnic`='$s'";
+    $q3 = "SELECT * FROM `covid_test_report` WHERE (`covid_test_status`='Positive' OR  `covid_test_status`='Negative' OR  `covid_test_status`='Test Done') AND `cnic`='$s'";
     $row3 = mysqli_query($db, $q3);
 } else {
 
@@ -21,7 +21,7 @@ if (isset($_POST['submit'])) {
     $q2 = "SELECT * FROM `covid_test_report` WHERE `covid_test_status`='Pending'";
     $row2 = mysqli_query($db, $q2);
 
-    $q3 = "SELECT * FROM `covid_test_report` WHERE `covid_test_status`='Positive' OR  `covid_test_status`='Negative'";
+    $q3 = "SELECT * FROM `covid_test_report` WHERE (`covid_test_status`='Positive' OR  `covid_test_status`='Negative' OR  `covid_test_status`='Test Done')";
     $row3 = mysqli_query($db, $q3);
 }
 
@@ -79,7 +79,7 @@ if (isset($_POST['submit'])) {
                             <td><?php echo $data1['city']; ?></td>
                             <td><?php echo $data1['cnic']; ?></td>
                             <!-- <td><a class="view-more btn btn-sm btn-dark-red-f" href="details.html">view profile</a></td> -->
-                            <td><?php echo $data1['covid_test_status']; ?></td>
+                            <td><label class="label-blue"><?php echo $data1['covid_test_status']; ?></label></td>
                         </tr>
                     <?php } ?>
                 </tbody>
@@ -111,7 +111,7 @@ if (isset($_POST['submit'])) {
                             <td><?php echo $data2['city']; ?></td>
                             <td><?php echo $data2['cnic']; ?></td>
                             <!-- <td><a class="view-more btn btn-sm btn-dark-red-f" href="details.html">view profile</a></td> -->
-                            <td><?php echo $data2['covid_test_status']; ?></td>
+                            <td><label class="label-orange"><?php echo $data2['covid_test_status']; ?></label></td>
                         </tr>
                     <?php } ?>
                 </tbody>
@@ -143,7 +143,17 @@ if (isset($_POST['submit'])) {
                             <td><?php echo $data3['city']; ?></td>
                             <td><?php echo $data3['cnic']; ?></td>
                             <!-- <td><a class="view-more btn btn-sm btn-dark-red-f" href="details.html">view profile</a></td> -->
-                            <td><?php echo $data3['covid_test_status']; ?></td>
+                            <td><label class="
+                        <?php
+                        if ($data3['covid_test_status'] == 'Test Done') {
+                            echo "label-blue";
+                        } elseif ($data3['covid_test_status'] == 'Negative') {
+                            echo "label-green";
+                        } elseif ($data3['covid_test_status'] == 'Positive') {
+                            echo "label-pink";
+                        }
+                        ?>
+                        "><?php echo $data3['covid_test_status']; ?></label></td>
                         </tr>
                     <?php } ?>
                 </tbody>

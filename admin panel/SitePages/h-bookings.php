@@ -10,7 +10,7 @@ if (isset($_POST['submit'])) {
     $q2 = "SELECT * FROM `covid_test_report` WHERE `hospital_code`='$hc' AND `covid_test_status`='Pending' AND `cnic`='$s'";
     $row2 = mysqli_query($db, $q2);
 
-    $q3 = "SELECT * FROM `covid_test_report` WHERE `hospital_code`='$hc' AND `covid_test_status`='Test Done' AND `cnic`='$s'";
+    $q3 = "SELECT * FROM `covid_test_report` WHERE `hospital_code`='$hc' AND (`covid_test_status`='Positive' OR  `covid_test_status`='Negative' OR  `covid_test_status`='Test Done') AND `cnic`='$s'";
     $row3 = mysqli_query($db, $q3);
 } else {
 
@@ -21,7 +21,7 @@ if (isset($_POST['submit'])) {
     $q2 = "SELECT * FROM `covid_test_report` WHERE `hospital_code`='$hc' AND `covid_test_status`='Pending'";
     $row2 = mysqli_query($db, $q2);
 
-    $q3 = "SELECT * FROM `covid_test_report` WHERE `hospital_code`='$hc' AND `covid_test_status`='Test Done'";
+    $q3 = "SELECT * FROM `covid_test_report` WHERE `hospital_code`='$hc' AND (`covid_test_status`='Positive' OR  `covid_test_status`='Negative' OR  `covid_test_status`='Test Done')";
     $row3 = mysqli_query($db, $q3);
 }
 
@@ -158,7 +158,11 @@ if (isset($_POST['submit'])) {
                             <td><label class="
                         <?php
                         if ($data3['covid_test_status'] == 'Test Done') {
+                            echo "label-blue";
+                        } elseif ($data3['covid_test_status'] == 'Negative') {
                             echo "label-green";
+                        } elseif ($data3['covid_test_status'] == 'Positive') {
+                            echo "label-pink";
                         }
                         ?>
                         "><?php echo $data3['covid_test_status']; ?></label></td>
