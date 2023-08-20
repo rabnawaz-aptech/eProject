@@ -66,7 +66,7 @@ if (isset($_POST['submit'])) {
                         <?php
                         if ($data1['covid_test_status'] == 'Positive') {
                             echo "label-pink";
-                        } elseif ($data1['vaccine_status'] == 'Pending') {
+                        } elseif ($data1['vaccine_status'] == 'Not Vaccinated' || $data1['vaccine_status'] == 'Pending') {
                             echo "label-orange";
                         } elseif ($data1['vaccine_status'] == 'Scheduled') {
                             echo "label-blue";
@@ -77,7 +77,7 @@ if (isset($_POST['submit'])) {
                         "><?php
                             if ($data1['covid_test_status'] == 'Positive') {
                                 echo $data1['covid_test_status'];
-                            } elseif ($data1['vaccine_status'] == 'Not Vaccinated' || $data1['vaccine_status'] == 'Pending') {
+                            } elseif ($data1['vaccine_status'] == 'Not Vaccinated' || $data1['vaccine_status'] == 'Pending' || $data1['vaccine_status'] == 'Scheduled') {
                                 echo $data1['vaccine_status'];
                             } elseif ($data1['vaccine_status'] == 'Vaccinated') {
                                 echo $data1['vaccine_status'] . "(" . $data1['vaccine doses'] . ")";
