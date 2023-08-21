@@ -153,7 +153,7 @@ if ($data1['vaccine_status'] == 'Vaccinated') {
                                                         echo "<script>window.open('h-vaccination.php','_self');</script>";
                                                     } elseif ($data1['vaccine_status'] == 'Scheduled') {
 
-                                                        $qs = "UPDATE `vaccination_bookings` SET `vaccination_specialist`='$vs',`date_of_appointment`='$doa',`time_of_appointment`='$toa',`vaccine_status`='$vaccinestatus'  WHERE `id`='$id'";
+                                                        $qs = "UPDATE `vaccination_bookings` SET `vaccination_specialist`='$vs',`date_of_appointment`='$doa',`time_of_appointment`='$toa',`vaccine_status`='$vaccinestatus',`vaccine_dose`='$vaccinedose'  WHERE `id`='$id'";
                                                         $qu = "UPDATE `users` SET `vaccine doses`='$vaccinedose',`vaccine`='$vaccine',`vaccine_status`='$vaccinestatus'  WHERE `cnic`='$cnic'";
                                                         mysqli_query($db, $qs);
                                                         mysqli_query($db, $qu);
