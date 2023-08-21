@@ -134,7 +134,7 @@ include 'db.php';
                             $dp= "../SiteAssets/images/people.svg";
                         }
 
-                        $role= "user";
+                        $role= "User";
 
                         $q1 = "SELECT * FROM `users` WHERE `email` LIKE '$e';";
                         $run = mysqli_query($db , $q1);
