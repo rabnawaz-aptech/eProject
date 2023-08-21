@@ -6,7 +6,8 @@ if (isset($_SESSION['profile'])) {
 
     // INSERT INTO `vaccination_bookings`( `first_name`, `last_name`, `email`, `phone`, `cnic`, `dob`, `gender`, `city`, `vaccine`, `vaccination_hospital`, `vaccination_specialist`, `date_of_appointment`, `time_of_appointment`, `vaccine_dose`, `vaccine_status`) VALUES ('Rabnawaz','Abdul Khaliq','rabnawaz@gmail.com','03178873513','5150168709913','2001-12-07','Male','Karachi','Pfizer','Jinnah Hospital','Nasir','2023-08-01','11:00','2','Vaccinated');
 
-    $e = $_SESSION['profile'];
+    $_SESSION['Email'] = $_COOKIE['profile'];
+    $e = $_SESSION['Email'];
     $q1 = "SELECT * FROM `users` WHERE `email`='$e' OR `phone`='$e'";
     $run1 = mysqli_query($db, $q1);
     $data1 = mysqli_fetch_assoc($run1);
@@ -60,6 +61,15 @@ if (isset($_SESSION['profile'])) {
         echo "<style>.hb{display: none;}</style>";
     }
 
+    // $cnic = $_SESSION['cnic'];
+    $ct = "SELECT * FROM `vaccination_bookings` WHERE `cnic`='$cnic' AND `vaccine_status`!='Vaccinated'";
+    $rowt = mysqli_query($db, $ct);
+    $countt = mysqli_num_rows($rowt);
+
+    if ($countt == 1) {
+        echo "<style>.hb{display: none;}</style>";
+    }
+
 
 
 
@@ -81,12 +91,12 @@ if (isset($_SESSION['profile'])) {
                             <div class="col-lg-6 col-12 mb-3 mt-3">
                                 <form method="POST">
                                     <label class="form-label">First Name:</label>
-                                    <input type="text" name="fname" id="name" class="form-control" value="<?php echo $_SESSION['first_name']; ?>" placeholder="Full name" required disabled>
+                                    <input type="text" name="fname" id="name" class="form-control" value="<?php echo $_SESSION['FName']; ?>" placeholder="Full name" required disabled>
                             </div>
 
                             <div class="col-lg-6 col-12 mb-3 mt-3">
                                 <label class="form-label">Last Name:</label>
-                                <input type="text" name="lname" id="name" class="form-control" value="<?php echo $_SESSION['last_name']; ?>" placeholder="Full name" required disabled>
+                                <input type="text" name="lname" id="name" class="form-control" value="<?php echo $_SESSION['LName']; ?>" placeholder="Full name" required disabled>
                             </div>
 
                             <div class="col-lg-6 col-12 mb-3 mt-3">

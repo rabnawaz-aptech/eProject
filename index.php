@@ -35,7 +35,7 @@ include 'header.php';
                                 </div>
                             </h1>
 
-                            <p class="mb-4">Medic Care is a Bootstrap 5 Template provided by TemplateMo website. Credits go to FreePik and RawPixel for images used in this template.</p>
+                            <p class="mb-4">Covid Test and Vaccination System provided by Ministry of Health. Credits go to FreePik and RawPixel for images used in this template.</p>
 
                             <div class="heroLinks d-flex flex-wrap align-items-center">
                                 <a class="custom-link me-4" href="#about" data-hover="Learn More">Learn More</a>
