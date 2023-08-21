@@ -146,11 +146,11 @@ include 'h-header.php';
                                         }else{
 
 
-                                    $q2 = "INSERT INTO `users`(`first_name`,`last_name`,`email`,`role`,`gender`,`dob`,`city`,`dp`,`cnic`,`pwd`,`phone`) VALUES('$fname','$lname','$e','$role','$g','$dob','$city','$dp','$cnic','$p','$phone') ";
+                                    // $q2 = "INSERT INTO `users`(`first_name`,`last_name`,`email`,`role`,`gender`,`dob`,`city`,`dp`,`cnic`,`pwd`,`phone`) VALUES('$fname','$lname','$e','$role','$g','$dob','$city','$dp','$cnic','$p','$phone') ";
                                     $q3 = "INSERT INTO `specialists`(`first_name`,`last_name`,`email`,`role`,`gender`,`dob`,`dp`,`city`,`cnic`,`pwd`,`phone`,`hsptl_code`,`hsptl`,`spltid`,`splty`) VALUES('$fname','$lname','$e','$role','$g','$dob','$dp','$city','$cnic','$p','$phone','$hsptl_code','$hsptl','$spltid','$splty') ";
                                     // print_r($q3);
                                     // exit();
-                                    mysqli_query($db,$q2);
+                                    // mysqli_query($db,$q2);
                                     mysqli_query($db,$q3);
                                     echo "<script>window.location.href = 'h-specialists.php';</script>";
                                 }

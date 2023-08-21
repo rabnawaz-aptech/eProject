@@ -56,7 +56,7 @@ include 'db.php';
                         <label for="floatingInputGrid" style="font-weight: 500;">Password</label>
                         <span class="input-group-text my-input" id="addon-wrapping">&nbsp;<i class="far fa-eye" id="togglePassword" title="Show password"></i>&nbsp;</span>
                     </div>
-                    <a href="#" style="color: #0dc1c4;">Forgotten password?</a>
+                    <!-- <a href="#" style="color: #0dc1c4;">Forgotten password?</a> -->
                     <br><br>
                     <?php 
 
@@ -122,7 +122,7 @@ if(isset($_POST['login'])){
 
 
  ?>
-                    <button class="btn my-btn2 form-control" name="login">LOGIN NOW!</button>
+                    <button class="btn btn-primary form-control" name="login">LOGIN NOW!</button>
                     <br><hr>
                     Don't have an Account? <a href="signup.php" style="color: #0dc1c4;">Sign Up.</a>
                 </form>

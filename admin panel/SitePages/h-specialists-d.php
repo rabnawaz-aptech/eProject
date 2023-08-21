@@ -46,6 +46,12 @@ $data1 = mysqli_fetch_assoc($row1);
                                                         <div class="form-group"><label>CNIC</label><input class="form-control" readonly="readonly" value="<?php echo $data1['cnic']; ?>" /></div>
                                                     </div>
                                                     <div class="col-md-4">
+                                                        <div class="form-group"><label>email</label><input class="form-control" readonly="readonly" value="<?php echo $data1['email']; ?>" /></div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group"><label>password</label><input class="form-control" readonly="readonly" value="<?php echo $data1['pwd']; ?>" /></div>
+                                                    </div>
+                                                    <div class="col-md-4">
                                                         <div class="form-group"><label>gender</label><input class="form-control" readonly="readonly" value="<?php echo $data1['gender']; ?>" /></div>
                                                     </div>
                                                     <div class="col-md-4">

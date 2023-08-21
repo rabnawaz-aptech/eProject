@@ -254,7 +254,7 @@ $count7 = mysqli_num_rows($row7);
                 </tbody>
               </table>
             </div>
-            <div class="card-footer"><a class="view-more" href="">more<i class="las la-angle-right"></i></a></div>
+            <div class="card-footer"><a class="view-more" href="bookings.php">more<i class="las la-angle-right"></i></a></div>
           </div>
         </div>
       </div>
