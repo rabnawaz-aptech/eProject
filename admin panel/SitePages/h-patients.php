@@ -1,13 +1,14 @@
 <?php
 include 'h-header.php';
+$hc = $_SESSION['hospital_code'];
 
 if (isset($_POST['submit'])) {
     $s = $_POST['search'];
-    $q1 = "SELECT * FROM `users` WHERE `role`='User' AND `cnic`='$s'";
+    $q1 = "SELECT * FROM `vaccination_bookings` WHERE `hospital_code`='$hc' AND `cnic`='$s'";
     $row1 = mysqli_query($db, $q1);
 } else {
 
-    $q1 = "SELECT * FROM `users` WHERE `role`='User'";
+    $q1 = "SELECT * FROM `vaccination_bookings` WHERE `hospital_code`='$hc'";
     $row1 = mysqli_query($db, $q1);
 }
 
@@ -56,17 +57,16 @@ if (isset($_POST['submit'])) {
                     <?php while ($data1 = mysqli_fetch_assoc($row1)) { ?>
                         <tr>
                             <td><?php echo $data1['id']; ?></td>
-                            <td><img class="rounded-circle" src="../SiteAssets/images/people.svg" loading="lazy" /><span class="ml-2"><a href="patients-d.php?id=<?php echo $data1['id']; ?>" style="color: #000;"><?php echo $data1['first_name'] . " " . $data1['last_name']; ?></a></span></td>
+                            <td><img class="rounded-circle" src="../SiteAssets/images/people.svg" loading="lazy" /><span class="ml-2"><a href="h-vaccination-d.php?id=<?php echo $data1['id']; ?>" style="color: #000;"><?php echo $data1['first_name'] . " " . $data1['last_name']; ?></a></span></td>
                             <td><?php echo $data1['dob']; ?></td>
                             <td><?php echo $data1['gender']; ?></td>
                             <td><?php echo $data1['city']; ?></td>
                             <td><?php echo $data1['cnic']; ?></td>
                             <!-- <td><a class="view-more btn btn-sm btn-dark-red-f" href="details.html">view profile</a></td> -->
+                            <!-- <td><label class="label-green"></label></td> -->
                             <td><label class="
                         <?php
-                        if ($data1['covid_test_status'] == 'Positive') {
-                            echo "label-pink";
-                        } elseif ($data1['vaccine_status'] == 'Not Vaccinated' || $data1['vaccine_status'] == 'Pending') {
+                        if ($data1['vaccine_status'] == 'Pending') {
                             echo "label-orange";
                         } elseif ($data1['vaccine_status'] == 'Scheduled') {
                             echo "label-blue";
@@ -74,14 +74,7 @@ if (isset($_POST['submit'])) {
                             echo "label-green";
                         }
                         ?>
-                        "><?php
-                            if ($data1['covid_test_status'] == 'Positive') {
-                                echo $data1['covid_test_status'];
-                            } elseif ($data1['vaccine_status'] == 'Not Vaccinated' || $data1['vaccine_status'] == 'Pending' || $data1['vaccine_status'] == 'Scheduled') {
-                                echo $data1['vaccine_status'];
-                            } elseif ($data1['vaccine_status'] == 'Vaccinated') {
-                                echo $data1['vaccine_status'] . "(" . $data1['vaccine doses'] . ")";
-                            } ?></label></td>
+                        "><?php echo $data1['vaccine_status'] . "(" . $data1['vaccine_dose'] . ")"; ?></label></td>
                         </tr>
                     <?php } ?>
                 </tbody>

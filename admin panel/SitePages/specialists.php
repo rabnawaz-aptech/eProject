@@ -59,7 +59,7 @@ if (isset($_POST['submit'])) {
                 <tbody>
                     <?php while ($data1 = mysqli_fetch_assoc($row1)) { ?>
                         <tr>
-                            <td><img class="rounded-circle mr-1" src="<?php echo $data1['dp']; ?>" loading="lazy" /><a href="specialists-d.php?id=<?php echo $data1['id']; ?>" style="color: #000;"><span class="ml-2"><?php echo $data1['first_name']; ?> <?php echo $data1['last_name']; ?></span></a></td>
+                            <td><img class="rounded-circle mr-1" src="../SiteAssets/images/doctor.svg" loading="lazy" /><a href="specialists-d.php?id=<?php echo $data1['id']; ?>" style="color: #000;"><span class="ml-2"><?php echo $data1['first_name']; ?> <?php echo $data1['last_name']; ?></span></a></td>
                             <td class="text-muted"><?php echo $data1['gender']; ?></td>
                             <td class="text-muted"><a href=""><?php echo $data1['spltid']; ?></a></td>
                             <td><?php echo $data1['role']; ?></td>

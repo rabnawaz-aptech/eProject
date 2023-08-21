@@ -129,9 +129,9 @@ include 'db.php';
                         if($p==$cp){
 
                         if($g == "Male"){
-                            $dp = "images/male-avatar.png";
+                            $dp = "../SiteAssets/images/people.svg";
                         }else{
-                            $dp= "images/female-avatar.png";
+                            $dp= "../SiteAssets/images/people.svg";
                         }
 
                         $role= "user";
@@ -176,7 +176,7 @@ include 'db.php';
 </script>
                     <span id="demo"></span>
                     <br>
-                    <button class="btn my-btn2 form-control"  name="signup">SIGN <span>UP</span></button>
+                    <button class="btn btn-primary form-control"  name="signup">SIGN <span>UP</span></button>
                     <br><hr>
                     Already have an Account? <a href="login.php" style="color: #0dc1c4;">Login.</a>
                 </form>
